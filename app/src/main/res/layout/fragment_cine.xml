@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.cine.CineFragment">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/background_lighter" />
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/background_cine"
+            />
+
+
+    </FrameLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginHorizontal="40dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <TextView
+            android:id="@+id/cine_dore_titulo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/cine_desc"
+            android:textSize="@dimen/h6"
+            android:textColor="@color/white"
+            android:textAlignment="center"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_marginTop="43dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/horario_taquilla_titulo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/horario_taquilla_titulo"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/h6"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/horario_taquilla_nota"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/horario_taquilla_nota"
+                    android:textAlignment="textEnd"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/label" />
+            </LinearLayout>
+
+            <View
+                android:id="@+id/divisor5"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginVertical="8dp"
+                android:background="@android:color/darker_gray" />
+
+            <TextView
+                android:id="@+id/horario_taquilla"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/horario_taquilla_invierno"
+                android:textColor="@color/white"
+                android:textSize="@dimen/body" />
+
+            <TextView
+                android:id="@+id/horario_taquilla_verano"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/horario_taquilla_verano"
+                android:textColor="@color/white"
+                android:textSize="@dimen/body" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_marginTop="43dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/horario_proyecciones_titulo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/horario_proyecciones_titulo"
+                android:textColor="@color/white"
+                android:textSize="@dimen/h6"
+                android:textStyle="bold" />
+
+            <View
+                android:id="@+id/divisor3"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginVertical="8dp"
+                android:background="@color/white_50" />
+
+            <TextView
+                android:id="@+id/horario_proyecciones"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/horario_proyecciones"
+                android:textColor="@color/white"
+                android:textSize="@dimen/body" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_marginTop="43dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/localizacion_titulo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/localizacion_titulo"
+                android:textColor="@color/white"
+                android:textSize="@dimen/h6"
+                android:textStyle="bold" />
+
+            <View
+                android:id="@+id/divisor2"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginVertical="8dp"
+                android:background="@color/white_50" />
+
+            <TextView
+                android:id="@+id/localizacion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/localizacion"
+                android:textColor="@color/white"
+                android:textSize="@dimen/body" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_marginTop="43dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/instalaciones_titulo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/instalaciones_titulo"
+                android:textColor="@color/white"
+                android:textSize="@dimen/h6"
+                android:textStyle="bold" />
+
+            <View
+                android:id="@+id/divisor1"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginVertical="8dp"
+                android:background="@color/white_50" />
+
+            <TextView
+                android:id="@+id/salasinternas"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/salasinternas"
+                android:textColor="@color/white"
+                android:textSize="@dimen/body" />
+
+            <TextView
+                android:id="@+id/salasexternas"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/salasexternas"
+                android:textColor="@color/white"
+                android:textSize="@dimen/body" />
+
+            <TextView
+                android:id="@+id/cafeteria"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/cafeteria"
+                android:textColor="@color/white"
+                android:textSize="@dimen/body" />
+
+            <TextView
+                android:id="@+id/libreria"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/libreria"
+                android:textColor="@color/white"
+                android:textSize="@dimen/body" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

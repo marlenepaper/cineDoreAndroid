@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="h1">32.44sp</dimen>
+    <dimen name="h2">28.83sp</dimen>
+    <dimen name="h3">25.63sp</dimen>
+    <dimen name="h4">22.78sp</dimen>
+    <dimen name="h5">20.25sp</dimen>
+    <dimen name="h6">18sp</dimen>
+    <dimen name="body">16sp</dimen>
+    <dimen name="label">14.22sp</dimen>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+</resources>

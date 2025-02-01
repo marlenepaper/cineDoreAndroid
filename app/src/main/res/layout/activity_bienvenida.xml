@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Bienvenida">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/background_inicio_registro" />
+
+    <ImageView
+        android:id="@+id/logo_icono"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="300dp"
+        android:src="@drawable/logo_icono"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/bienvenida_titulo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
+        android:text="@string/bienvenida_titulo"
+        android:textSize="@dimen/h1"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/logo_icono" />
+
+    <TextView
+        android:id="@+id/bienvenida_titulo_dore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-8dp"
+        android:text="@string/bienvenida_titulo_dore"
+        android:textSize="@dimen/h1"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/bienvenida_titulo" />
+
+    <TextView
+        android:id="@+id/bienvenida_descripcion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:maxWidth="300dp"
+        android:text="@string/bienvenida_descripcion"
+        android:textSize="@dimen/body"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/bienvenida_titulo_dore" />
+
+    <TextView
+        android:id="@+id/iniciar_sesion"
+        android:layout_width="325dp"
+        android:layout_height="46dp"
+        android:layout_marginTop="62dp"
+        android:text="@string/inicia_sesion"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/bienvenida_descripcion"
+        android:textSize="@dimen/body"
+        android:gravity="center"
+        android:background="@drawable/gradient_button"
+        android:textStyle="bold"
+        android:textColor="@color/white"/>
+
+    <TextView
+        android:id="@+id/crea_tu_cuenta_titulo"
+        android:layout_width="325dp"
+        android:layout_height="46dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/crea_tu_cuenta"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/iniciar_sesion"
+        android:textSize="@dimen/body"
+        android:gravity="center"
+        android:background="@drawable/borde_btn"
+        android:textStyle="bold"
+        android:textColor="@color/white"/>
+
+
+    <TextView
+        android:id="@+id/continua_como_invitado"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:linksClickable="true"
+        android:text="@string/continua_como_invitado"
+        android:textSize="@dimen/label"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginBottom="130dp"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

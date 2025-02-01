@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@id/icon_peliculas">
+
+    <fragment
+        android:id="@+id/icon_peliculas"
+        android:name="com.binaryBuddies.cinedore.ui.peliculas.PeliculasFragment"
+        android:label="@string/title_activity_peliculas"
+        tools:layout="@layout/fragment_peliculas" />
+
+    <fragment
+        android:id="@+id/icon_pin"
+        android:name="com.binaryBuddies.cinedore.ui.cine.CineFragment"
+        android:label="@string/cine_icono"
+        tools:layout="@layout/fragment_cine" />
+
+    <fragment
+        android:id="@+id/icon_qr"
+        android:name="com.binaryBuddies.cinedore.ui.ticket.TicketFragment"
+        android:label="@string/entradas_icono"
+        tools:layout="@layout/fragment_ticket_qr" />
+
+    <fragment
+        android:id="@+id/icon_user"
+        android:name="com.binaryBuddies.cinedore.ui.perfil.PerfilFragment"
+        android:label="@string/perfil_icono"
+        tools:layout="@layout/fragment_perfil" />
+</navigation>

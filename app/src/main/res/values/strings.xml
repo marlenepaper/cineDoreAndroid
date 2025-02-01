@@ -1,0 +1,107 @@
+<resources>
+    <string name="app_name">CineDore</string>
+
+    <!-- Compartidos que van a cambiar con API-->
+    <string name="nombre_usuario">Luis</string>
+    <string name="numero_de_entradas">x3 Entradas</string>
+    <string name="titulo_pelicula_seleccionada">La Dolce Vita</string>
+    <string name="genero_pelicula_seleccionada">Drama</string>
+    <string name="ano_pelicula_seleccionada">1960</string>
+    <string name="duracion_pelicula_seleccionada">1h 14m</string>
+    <string name="clasificacion_pelicula_seleccionada">18</string>
+    <string name="lenguaje_pelicula_seleccionada">VOSE</string>
+    <string name="fecha_seleccionada_de_pelicula_seleccionada">Miércoles 15 de Enero</string>
+    <string name="hora_seleccionada_de_pelicula_seleccionada">17:00</string>
+    <string name="sala_de_pelicula_seleccionada">1</string>
+
+    <string name="butaca_cultural_txt">Homenaje del mes a:</string>
+    <string name="butaca_cultural_titulo">Marcello Mastroianni</string>
+    <string name="fechas_de_cierre">Instalaciones cerradas: 1 y 6 Enero</string>
+
+
+<!--    <string-array name="butaca_culltural">-->
+<!--        <item>Bright Future</item>-->
+<!--        <item>Indiana</item>-->
+<!--        <item>Out Getting Ribs</item>-->
+<!--        <item>Santa Maria de Feira</item>-->
+<!--        <item>Long Haired Child</item>-->
+<!--        <item>Vincent OBrien</item>-->
+<!--        <item>Momento</item>-->
+<!--    </string-array>-->
+<!--    -->
+<!--    <string-array name="pelicula_seleccionada">-->
+<!--        <item>Bright Future</item>-->
+<!--        <item>Indiana</item>-->
+<!--        <item>Out Getting Ribs</item>-->
+<!--        <item>Santa Maria de Feira</item>-->
+<!--        <item>Long Haired Child</item>-->
+<!--        <item>Vincent OBrien</item>-->
+<!--        <item>Momento</item>-->
+<!--    </string-array>-->
+
+
+
+    <!-- Compartidos -->
+    <string name="inicia_sesion">Inicia sesión</string>
+    <string name="crea_tu_cuenta">Crea tu cuenta</string>
+    <string name="correo">Dirección de correo electrónico*</string>
+    <string name="contrasena">Contraseña*</string>
+    <string name="sala">Sala:</string>
+
+    <!-- Pantalla de bienvenida -->
+    <string name="bienvenida_titulo">Bienvenido al</string>
+    <string name="bienvenida_titulo_dore">Cine Doré</string>
+    <string name="bienvenida_descripcion">Compra tus entradas y disfruta del mejor cine clásico y de autor en Madrid.</string>
+    <string name="continua_como_invitado"><u>Continuar como invitado</u></string>
+
+    <!-- Pantalla de inicio de sesión -->
+    <string name="haz_olvidado_contraseña">¿Has olvidado tu contraseña?</string>
+    <string name="iniciar_sesion">Iniciar sesión</string>
+    <string name="no_tienes_cuenta">¿Aún no tienes cuenta? <u>Crea tu cuenta</u></string>
+
+    <!-- Pantalla de registro -->
+    <string name="confirmar_correo">Confirmar correo electrónico*</string>
+    <string name="tu_contraseña_debe">Tu contraseña debe contener:</string>
+    <string name="longitud_contraseña">• mínimo 10 caracteres</string>
+    <string name="nombre">Nombre*</string>
+    <string name="apellidos">Apellidos*</string>
+    <string name="fecha_nacimiento">Fecha de nacimiento*</string>
+    <string name="mobil">Teléfono</string>
+    <string name="dni">DNI/NIE/Pasaporte</string>
+    <string name="campo_obligatorio">* Indica un campo obligatorio</string>
+    <string name="terminos_privacidad">Al seleccionar &lt;&lt;Crear una cuenta&gt;&gt; confirma que es mayor de edad, que acepta las Condiciones de uso y que ha leído nuestra Política de privacidad</string>
+    <string name="consentimiento">Para retirar su consentimiento (incluido cualquier consentimiento que haya otorgado previamente) o para saber más sobre sus derechos, consulte la Política de privacidad.</string>
+    <string name="crear_cuenta">Crear cuenta</string>
+    <string name="ya_tienes_cuenta">¿Ya tienes una cuenta? <u>Inicia sesión</u></string>
+
+    <!-- Bottom bar -->
+    <string name="title_activity_peliculas">Peliculas</string>
+    <string name="cine_icono">Cine</string>
+    <string name="entradas_icono">Entradas</string>
+    <string name="perfil_icono">Perfil</string>
+
+    <!-- Pantalla de perfil usuario -->
+    <string name="hola">¡Hola!</string>
+    <string name="Bienvenido">Bienvenido,</string>
+    <string name="cerrar_sesion">Cerrar sesión</string>
+    <string name="eliminar_cuenta"><u>Eliminar cuenta</u></string>
+
+    <!-- Pantalla de cine-->
+    <string name="cine_desc">El cine Doré es la sede de proyecciones de Filmoteca Española.</string>
+    <string name="instalaciones_titulo">Instalaciones</string>
+    <string name="salasinternas">• 2 Salas internas</string>
+    <string name="salasexternas">• 1 Sala de verano (exterior)</string>
+    <string name="cafeteria">• Cafetería</string>
+    <string name="libreria">• Librería</string>
+    <string name="localizacion_titulo">Localización</string>
+    <string name="localizacion">Calle Santa Isabel, n.º 3 (28012 Madrid)</string>
+    <string name="horario_proyecciones_titulo">Horario proyecciones</string>
+    <string name="horario_proyecciones">De martes a domingo</string>
+    <string name="horario_taquilla_titulo">Horario taquilla</string>
+    <string name="horario_taquilla_nota">*Excepto festivos</string>
+    <string name="horario_taquilla_invierno">• Invierno de 17:00 a 20:00</string>
+    <string name="horario_taquilla_verano">• Verano (julio y agosto): 17:30 - 20:30</string>
+
+
+
+</resources>
