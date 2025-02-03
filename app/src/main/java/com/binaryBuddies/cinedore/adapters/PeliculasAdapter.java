@@ -1,51 +1,57 @@
-//package com.binaryBuddies.cinedore.adapters;
-//
-//import android.content.Context;
-//import android.view.LayoutInflater;
-//import android.view.View;
-//import android.view.ViewGroup;
-//import android.widget.ImageView;
-//import androidx.annotation.NonNull;
-//import androidx.recyclerview.widget.RecyclerView;
-//import com.bumptech.glide.Glide;
-//import com.tuapp.models.Pelicula;
-//import com.tuapp.R;
-//import java.util.List;
-//
-//public class PeliculasAdapter extends RecyclerView.Adapter<PeliculasAdapter.PeliculaViewHolder> {
-//    private List<Pelicula> peliculas;
-//    private Context context;
-//
-//    public PeliculasAdapter(List<Pelicula> peliculas, Context context) {
-//        this.peliculas = peliculas;
-//        this.context = context;
-//    }
-//
-//    @NonNull
-//    @Override
-//    public PeliculaViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-//        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_pelicula, parent, false);
-//        return new PeliculaViewHolder(view);
-//    }
-//
-//    @Override
-//    public void onBindViewHolder(@NonNull PeliculaViewHolder holder, int position) {
-//        Pelicula pelicula = peliculas.get(position);
-//        Glide.with(context).load(pelicula.getImagenUrl()).into(holder.poster);
-//    }
-//
-//    @Override
-//    public int getItemCount() {
-//        return peliculas.size();
-//    }
-//
-//    static class PeliculaViewHolder extends RecyclerView.ViewHolder {
-//        ImageView poster;
-//
-//        public PeliculaViewHolder(@NonNull View itemView) {
-//            super(itemView);
-//            poster = itemView.findViewById(R.id.imagePelicula);
-//        }
-//    }
-//}
-//
+package com.binaryBuddies.cinedore.adapters;
+
+import android.content.Context;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.binaryBuddies.cinedore.R;
+import com.binaryBuddies.cinedore.models.PeliculaModel;
+import com.bumptech.glide.Glide;
+
+import java.util.ArrayList;
+
+public class PeliculasAdapter extends RecyclerView.Adapter<PeliculasAdapter.MyViewHolder> {
+
+    private Context context;
+    private ArrayList<PeliculaModel> peliculaModel;
+
+    public PeliculasAdapter(Context context, ArrayList<PeliculaModel> peliculaModel) {
+        this.context = context;
+        this.peliculaModel = peliculaModel;
+    }
+
+    @NonNull
+    @Override
+    public PeliculasAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        LayoutInflater inflater = LayoutInflater.from(context);
+        View view = inflater.inflate(R.layout.item_pelicula, parent, false);
+        return new PeliculasAdapter.MyViewHolder(view);
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull PeliculasAdapter.MyViewHolder holder, int position) {
+        // Usando Glide para cargar la imagen
+        Glide.with(context)
+                .load(peliculaModel.get(position).getImagenPoster()) // URL o recurso de imagen
+                .into(holder.imagenPoster);
+    }
+
+    @Override
+    public int getItemCount() {
+        return (peliculaModel != null) ? peliculaModel.size() : 0;
+    }
+
+    public static class MyViewHolder extends RecyclerView.ViewHolder {
+        ImageView imagenPoster;
+
+        public MyViewHolder(@NonNull View itemView) {
+            super(itemView);
+            imagenPoster = itemView.findViewById(R.id.imagenPoster);
+        }
+    }
+}

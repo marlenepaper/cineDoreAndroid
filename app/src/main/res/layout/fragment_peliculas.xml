@@ -1,15 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.peliculas.PeliculasFragment">
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Hello" />
 
     <ImageView
         android:layout_width="match_parent"
@@ -18,104 +13,136 @@
         android:src="@drawable/background_darker" />
 
     <LinearLayout
-        android:id="@+id/parentPanel"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="105dp"
-        app:layout_constraintTop_toTopOf="parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintTop_toTopOf="parent">
 
-        <LinearLayout
-            android:id="@+id/hijo1"
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:id="@+id/parentPanel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="105dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:id="@+id/hijo1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="start"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/detalle_izquierda" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/hijo2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="end"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/detalle_derecha" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="115dp">
+
+                <FrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center|top">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:background="@drawable/shape_pictures"
+                        android:clipToOutline="true"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/pelicula_0" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="bottom"
+                        android:layout_marginBottom="30dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/numero_de_entradas"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom"
+                            android:layout_marginStart="15dp"
+                            android:text="@string/butaca_cultural_txt"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/label" />
+
+                        <TextView
+                            android:id="@+id/butaca_cultural_titulo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom"
+                            android:layout_marginStart="15dp"
+                            android:text="@string/butaca_cultural_titulo"
+                            android:textAllCaps="true"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/h4"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                </FrameLayout>
+
+                <TextView
+                    android:id="@+id/fechas_de_cierre"
+                    android:layout_width="309dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center|bottom"
+                    android:layout_marginTop="182dp"
+                    android:background="@drawable/gradient_button"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:text="@string/fechas_de_cierre"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/body"
+
+                    />
+
+            </FrameLayout>
+
+
+        </FrameLayout>
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerPeliculas"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="horizontal"
-            android:gravity="start">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/detalle_izquierda" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/hijo2"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="horizontal"
-            android:gravity="end">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/detalle_derecha" />
-        </LinearLayout>
-
+            android:layout_marginTop="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
     </LinearLayout>
-
-    <FrameLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="115dp">
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/shape_pictures"
-            android:clipToOutline="true"
-            android:scaleType="centerCrop"
-            android:src="@drawable/pelicula_0"
-            android:layout_gravity="center"/>
-
-        <TextView
-            android:id="@+id/numero_de_entradas"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/butaca_cultural_txt"
-            android:textSize="@dimen/label"
-            android:layout_marginTop="135dp"
-            android:layout_marginStart="15dp"
-            android:textColor="@color/white"
-            />
-        <TextView
-            android:id="@+id/butaca_cultural_titulo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/butaca_cultural_titulo"
-            android:textSize="@dimen/h4"
-            android:textStyle="bold"
-            android:layout_marginTop="150dp"
-            android:layout_marginStart="15dp"
-            android:textAllCaps="true"
-            android:textColor="@color/white"
-            />
-    </FrameLayout>
-
-    <TextView
-        android:id="@+id/fechas_de_cierre"
-        android:layout_width="309dp"
-        android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:text="@string/fechas_de_cierre"
-        android:textSize="@dimen/body"
-        android:layout_marginTop="300dp"
-        android:layout_marginStart="15dp"
-        android:textColor="@color/white"
-        android:background="@drawable/gradient_button"
-        android:gravity="center"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-
-        />
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

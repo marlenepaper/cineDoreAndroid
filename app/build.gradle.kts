@@ -35,6 +35,11 @@ android {
 }
 
 dependencies {
+
+    implementation (libs.room.runtime)
+    annotationProcessor (libs.room.compiler)
+    androidTestImplementation (libs.room.testing)
+    implementation (libs.lifecycle.common.java8)
     implementation (libs.retrofit)
     implementation (libs.retrofit.gson)
     implementation(libs.glide)
