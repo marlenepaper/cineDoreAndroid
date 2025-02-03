@@ -1,1 +1,2 @@
-![image_alt](https://github.com/marlenepaper/cineDoreAndroid/blob/2b9dfff34afe167eb91d0a4e292759fd4d63f36f/app/src/main/res/drawable/infografico.png)
+![image_alt](https://github.com/marlenepaper/cineDoreAndroid/blob/a26f932f3f3526c49719e8a7fac34437400ab2dd/app/src/main/res/drawable/infografico_final.png)
+![image_alt](https://github.com/marlenepaper/cineDoreAndroid/blob/a26f932f3f3526c49719e8a7fac34437400ab2dd/app/src/main/res/drawable/modelo_e_r.jpg)
