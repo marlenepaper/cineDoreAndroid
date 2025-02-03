@@ -15,7 +15,10 @@
 
     <FrameLayout
         android:layout_width="402dp"
-        android:layout_height="418dp">
+        android:layout_height="418dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
             android:layout_width="match_parent"
@@ -30,7 +33,571 @@
             android:background="@drawable/gradient_pelicula" />
     </FrameLayout>
 
+    <ImageButton
+        android:id="@+id/icono_flecha_regresar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="80dp"
+        android:background="@null"
+        android:src="@drawable/icono_flecha_regresar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="12dp"
+
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="40dp"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="26dp"
+            android:background="@drawable/borde_inferior"
+            android:backgroundTint="@color/white"
+            android:orientation="horizontal"
+            android:outlineProvider="background">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/movie_classification"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="6dp"
+                    android:layout_marginEnd="6dp"
+                    android:background="@drawable/borde_clasificacion"
+                    android:backgroundTint="@color/white"
+                    android:gravity="center"
+                    android:text="@string/clasificacion_pelicula_seleccionada"
+                    android:textSize="12dp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/movie_title"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/titulo_pelicula_seleccionada"
+                android:textAlignment="center"
+                android:textSize="@dimen/h6"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="end"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+
+                    >
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/reloj"
+                        app:tint="@color/white" />
+
+                    <TextView
+                        android:id="@+id/movie_duration"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/duracion_pelicula_seleccionada"
+                        android:textAlignment="center"
+                        android:textSize="12dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="vertical"
+
+                    >
+
+                    <TextView
+                        android:id="@+id/movie_language"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="6dp"
+                        android:background="@drawable/borde_lenguaje"
+                        android:backgroundTint="@color/white"
+                        android:text="@string/lenguaje_pelicula_seleccionada"
+                        android:textAlignment="center"
+                        android:textSize="12dp" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-1.5dp"
+            android:background="@drawable/borde_superior"
+            android:backgroundTint="@color/white"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/movie_date"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="6dp"
+                android:layout_marginEnd="6dp"
+                android:gravity="center"
+                android:text="@string/fecha_seleccionada_de_pelicula_seleccionada"
+                android:textAlignment="center"
+                android:textSize="@dimen/label"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/movie_time"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@drawable/borde_laterales"
+                android:backgroundTint="@color/white"
+                android:gravity="center"
+                android:text="@string/hora_seleccionada_de_pelicula_seleccionada"
+                android:textAlignment="center"
+                android:textSize="@dimen/label"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/sala"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/sala"
+                    android:textAlignment="center"
+                    android:textSize="@dimen/label"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/movie_room_num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/sala_de_pelicula_seleccionada"
+                    android:textAlignment="center"
+                    android:textSize="@dimen/label"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="12dp"
+            android:layout_marginTop="36dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/entrada_general"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/entrada_general"
+                    android:textAlignment="center"
+                    android:textSize="@dimen/label"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="end"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/precio_entrada_general"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="99dp"
+                        android:layout_marginEnd="4dp"
+                        android:text="@string/precio_entrada_general"
+                        android:textAlignment="center"
+                        android:textSize="@dimen/label"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/euros1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/euros"
+                        android:textAlignment="center"
+                        android:textSize="@dimen/label"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/menos1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="42dp"
+                        android:text="@string/menos"
+                        android:textAlignment="center"
+                        android:textSize="@dimen/label"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/numero_entradas_1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="18dp"
+                        android:text="@string/numero_entradas"
+                        android:textAlignment="center"
+                        android:textSize="@dimen/label"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/mas_1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/mas"
+                        android:textAlignment="center"
+                        android:textSize="@dimen/label"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:layout_marginTop="36dp">
+
+                <TextView
+                    android:id="@+id/entrada_reducida"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/entrada_reducida"
+                    android:textAlignment="center"
+                    android:textSize="@dimen/label"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="end"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/precio_entrada_reducida"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="99dp"
+                        android:layout_marginEnd="4dp"
+                        android:text="@string/precio_entrada_reducida"
+                        android:textAlignment="center"
+                        android:textSize="@dimen/label"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/euros2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/euros"
+                        android:textAlignment="center"
+                        android:textSize="@dimen/label"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/menos2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="42dp"
+                        android:text="@string/menos"
+                        android:textAlignment="center"
+                        android:textSize="@dimen/label"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/numero_entradas_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="18dp"
+                        android:text="@string/numero_entradas"
+                        android:textAlignment="center"
+                        android:textSize="@dimen/label"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/mas_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/mas"
+                        android:textAlignment="center"
+                        android:textSize="@dimen/label"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/estudiantes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/estudiantes"
+                    android:textAlignment="center"
+                    android:textSize="12dp"
+                    android:textColor="@color/white_50" />
+                <TextView
+                    android:id="@+id/familias_numerosas"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/familias_numerosas"
+                    android:textAlignment="center"
+                    android:textSize="12dp"
+                    android:textColor="@color/white_50" />
+                <TextView
+                    android:id="@+id/grupos"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/grupos"
+                    android:textSize="12dp"
+                    android:textColor="@color/white_50"/>
+                <TextView
+                    android:id="@+id/mayores"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/mayores"
+                    android:textAlignment="center"
+                    android:textSize="12dp"
+                    android:textColor="@color/white_50" />
+                <TextView
+                    android:id="@+id/desempleo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/desempleo"
+                    android:textAlignment="center"
+                    android:textSize="12dp"
+                    android:textColor="@color/white_50" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:layout_marginTop="36dp">
+
+                <TextView
+                    android:id="@+id/entrada_gratuita"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/entrada_gratuita"
+                    android:textAlignment="center"
+                    android:textSize="@dimen/label"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="end"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/precio_entrada_gratuita"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="99dp"
+                        android:layout_marginEnd="4dp"
+                        android:text="@string/precio_entrada_gratuita"
+                        android:textAlignment="center"
+                        android:textSize="@dimen/label"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/euros3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/euros"
+                        android:textAlignment="center"
+                        android:textSize="@dimen/label"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/menos3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="42dp"
+                        android:text="@string/menos"
+                        android:textAlignment="center"
+                        android:textSize="@dimen/label"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/numero_entradas_3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="18dp"
+                        android:text="@string/numero_entradas"
+                        android:textAlignment="center"
+                        android:textSize="@dimen/label"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/mas_3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/mas"
+                        android:textAlignment="center"
+                        android:textSize="@dimen/label"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/menores"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/menores"
+                    android:textAlignment="center"
+                    android:textSize="12dp"
+                    android:textColor="@color/white_50" />
+                <TextView
+                    android:id="@+id/discapacidad"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/discapacidad"
+                    android:textAlignment="center"
+                    android:textSize="12dp"
+                    android:textColor="@color/white_50" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_marginTop="36dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/total"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/total"
+                        android:textAlignment="center"
+                        android:textSize="@dimen/h3"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/iva"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        android:text="@string/iva"
+                        android:textAlignment="center"
+                        android:textSize="@dimen/label"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="end"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/total_pago"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="6dp"
+                            android:paddingHorizontal="2dp"
+                            android:text="@string/total_pago"
+
+                            android:textAlignment="center"
+                            android:textSize="@dimen/h3" />
+
+                        <TextView
+                            android:id="@+id/euros_4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/euros"
+                            android:textAlignment="center"
+                            android:textSize="@dimen/h3" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/comprar"
+                    android:layout_width="325dp"
+                    android:layout_height="46dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/gradient_button"
+                    android:gravity="center"
+                    android:text="@string/comprar"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/body"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/cancelar"
+                    android:layout_width="325dp"
+                    android:layout_height="46dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/borde_btn"
+                    android:gravity="center"
+                    android:text="@string/cancelar"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/body"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/iniciar_sesion" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

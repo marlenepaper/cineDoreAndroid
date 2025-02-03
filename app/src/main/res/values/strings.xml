@@ -103,5 +103,34 @@
     <string name="horario_taquilla_verano">• Verano (julio y agosto): 17:30 - 20:30</string>
 
 
+    <!-- Pantalla de seleccion entradas-->
+    <string name="entrada_general">Entrada general</string>
+
+    <string name="entrada_reducida">Entrada reducida </string>
+    <string name="estudiantes">Estudiantes</string>
+    <string name="familias_numerosas">Familias numerosas</string>
+    <string name="grupos">Grupos vinculados a instituciones culturales o educativas</string>
+    <string name="mayores">Mayores a 65 años</string>
+    <string name="desempleo">En situación de desempleo</string>
+
+    <string name="entrada_gratuita">Entrada gratuita</string>
+    <string name="menores">Menor de 18 años</string>
+    <string name="discapacidad">Con discapacidad >= 33% + Acompañante</string>
+
+    <string name="euros">€</string>
+    <string name="menos">-</string>
+    <string name="mas">+</string>
+    <string name="numero_entradas">0</string>
+    <string name="total_pago">0.00</string>
+
+    <string name="precio_entrada_general">3</string>
+    <string name="precio_entrada_reducida">2</string>
+    <string name="precio_entrada_gratuita">0</string>
+
+    <string name="total">Total</string>
+    <string name="iva">(IVA incluido)</string>
+    <string name="comprar">Comprar</string>
+    <string name="cancelar">Cancelar</string>
+
 
 </resources>
