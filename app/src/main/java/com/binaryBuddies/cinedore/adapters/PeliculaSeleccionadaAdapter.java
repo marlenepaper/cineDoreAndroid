@@ -37,4 +37,16 @@ public class PeliculaSeleccionadaAdapter extends FragmentPagerAdapter {
     public int getCount() {
         return 2;
     }
+
+    @Override
+    public CharSequence getPageTitle(int position) {
+        switch (position) {
+            case 0:
+                return "Horarios";
+            case 1:
+                return "Sinopsis";
+            default:
+                return "";
+        }
+    }
 }

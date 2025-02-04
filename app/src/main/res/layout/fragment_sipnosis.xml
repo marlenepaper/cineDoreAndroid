@@ -3,9 +3,54 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/background_darker" />
+
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"></LinearLayout>
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/formato_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/formato_title"
+            android:textAlignment="center"
+            android:textSize="@dimen/h6"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/formato"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/formato"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/formato_tamano"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/formato_tamano"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/formato_color"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/formato_color"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

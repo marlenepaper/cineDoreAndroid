@@ -11,6 +11,7 @@ import androidx.viewpager.widget.ViewPager;
 import com.binaryBuddies.cinedore.adapters.PeliculaSeleccionadaAdapter;
 import com.binaryBuddies.cinedore.databinding.ActivityPeliculaSeleccionadaBinding;
 import com.bumptech.glide.Glide;
+import com.google.android.material.tabs.TabLayout;
 
 public class PeliculaSeleccionada extends AppCompatActivity {
 
@@ -54,6 +55,15 @@ public class PeliculaSeleccionada extends AppCompatActivity {
         PeliculaSeleccionadaAdapter peliculaSeleccionadaAdapter = new PeliculaSeleccionadaAdapter(this, getSupportFragmentManager());
         ViewPager viewPager = binding.viewPager;
         viewPager.setAdapter(peliculaSeleccionadaAdapter);
+
+
+        // Configurar TabLayout con ViewPager
+        TabLayout tabLayout = binding.tabLayout;
+        tabLayout.setupWithViewPager(viewPager);
+
+        // Establecer títulos de las pestañas
+        tabLayout.getTabAt(0).setText("Horarios");
+        tabLayout.getTabAt(1).setText("Sinopsis");
 
 
     }
