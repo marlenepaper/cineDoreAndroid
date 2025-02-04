@@ -1,19 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@android:color/transparent">
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scaleType="centerCrop"
-        android:src="@drawable/background_darker" />
+<!--    <ImageView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:scaleType="centerCrop"-->
+<!--        android:src="@drawable/background_darker" />-->
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_marginHorizontal="16dp">
 
         <TextView
             android:id="@+id/formato_title"
@@ -23,34 +25,63 @@
             android:text="@string/formato_title"
             android:textAlignment="center"
             android:textSize="@dimen/h6"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp"/>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@drawable/borde_formato_completo"
+            android:backgroundTint="@color/white_50"
+            >
 
             <TextView
                 android:id="@+id/formato"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:text="@string/formato"
-                android:textSize="12sp" />
+                android:textSize="@dimen/label"
+                android:gravity="center_vertical"
+                android:paddingHorizontal="8dp"/>
 
             <TextView
                 android:id="@+id/formato_tamano"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:text="@string/formato_tamano"
-                android:textSize="12sp" />
+                android:textSize="@dimen/label"
+                android:backgroundTint="@color/white_50"
+                android:background="@drawable/borde_lateral_formato"
+                android:gravity="center"/>
 
             <TextView
                 android:id="@+id/formato_color"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:text="@string/formato_color"
-                android:textSize="12sp" />
+                android:textSize="@dimen/label"
+                android:gravity="center"
+                />
         </LinearLayout>
-
+        <TextView
+            android:id="@+id/sinopsis_titulo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/sinopsis_titulo"
+            android:textAlignment="center"
+            android:textSize="@dimen/h6"
+            android:textStyle="bold"
+            android:layout_marginTop="18dp"
+            android:layout_marginBottom="8dp"/>
+        <TextView
+            android:id="@+id/sinopsis_desarrollo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/sinopsis_desarrollo"
+            android:textAlignment="textStart"
+            android:textSize="@dimen/body"
+            android:layout_marginBottom="8dp"/>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

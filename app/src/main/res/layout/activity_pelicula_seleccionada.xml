@@ -41,24 +41,24 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_margin="16dp">
-
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="-80dp">
             <com.google.android.material.tabs.TabLayout
                 android:id="@+id/tabLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@drawable/borde_toggle"
                 app:tabIndicatorColor="@android:color/white"
                 app:tabTextColor="@android:color/darker_gray"
                 app:tabSelectedTextColor="@android:color/white"/>
-
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/white"
                 android:orientation="horizontal"
                 android:outlineProvider="background"
-                android:layout_marginBottom="20dp">
+                android:layout_marginVertical="20dp">
 
                 <TextView
                     android:id="@+id/clasificacion"
@@ -67,8 +67,7 @@
                     android:layout_gravity="center"
                     android:layout_marginStart="6dp"
                     android:layout_marginEnd="6dp"
-                    android:background="@drawable/borde_clasificacion"
-                    android:backgroundTint="@color/white"
+                    android:background="@drawable/borde_clasificacion_degradado"
                     android:gravity="center"
                     android:text="@string/clasificacion_pelicula_seleccionada"
                     android:textSize="12dp"
@@ -77,7 +76,6 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-
                     android:orientation="vertical">
 
                     <TextView
@@ -181,26 +179,12 @@
                 </LinearLayout>
 
             </LinearLayout>
-
-
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/viewPager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="16dp" />
         </LinearLayout>
-
-
-
-
-        <androidx.viewpager.widget.ViewPager
-            android:id="@+id/viewPager"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp" />
-
-        <!--    <androidx.viewpager.widget.ViewPager-->
-        <!--        android:id="@+id/viewPager"-->
-        <!--        android:layout_width="match_parent"-->
-        <!--        android:layout_height="match_parent"-->
-        <!--        app:layout_behavior="@string/appbar_scrolling_view_behavior"-->
-        <!--        />-->
-
     </LinearLayout>
 
     <ImageButton android:id="@+id/icono_flecha_regresar"
