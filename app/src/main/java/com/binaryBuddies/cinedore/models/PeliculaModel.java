@@ -1,5 +1,7 @@
 package com.binaryBuddies.cinedore.models;
 
+import java.util.List;
+
 public class PeliculaModel {
 
     private String nombre;
@@ -11,9 +13,10 @@ public class PeliculaModel {
     private String clasificacion;
     private String formato;
     private String lenguaje;
+    private List<FuncionModel> funciones;
 
     public PeliculaModel(String nombre, String anio, String duracion, String sinopsis, String imagenPoster,
-                         String categoria, String clasificacion, String formato, String lenguaje) {
+                         String categoria, String clasificacion, String formato, String lenguaje,List<FuncionModel> funciones) {
         this.nombre = nombre;
         this.anio = anio;
         this.duracion = duracion;
@@ -23,6 +26,11 @@ public class PeliculaModel {
         this.clasificacion = clasificacion;
         this.formato = formato;
         this.lenguaje = lenguaje;
+        this.funciones = funciones;
+    }
+
+    public List<FuncionModel> getFunciones() {
+        return funciones;
     }
 
     public String getNombre() {

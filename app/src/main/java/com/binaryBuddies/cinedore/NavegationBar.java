@@ -21,6 +21,7 @@ import androidx.navigation.ui.NavigationUI;
 public class NavegationBar extends AppCompatActivity {
 
     private ActivityNavegationBarBinding binding;
+    BottomNavigationView navView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,9 +41,8 @@ public class NavegationBar extends AppCompatActivity {
             }
         });
 
-        BottomNavigationView navView = findViewById(R.id.nav_view);
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
+        navView = findViewById(R.id.nav_view);
+
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.icon_peliculas,
                 R.id.icon_pin, R.id.icon_qr, R.id.icon_user)
@@ -55,6 +55,8 @@ public class NavegationBar extends AppCompatActivity {
     public void launchPeliculas() {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_navegation_bar);
         navController.navigate(R.id.icon_peliculas);
+        navView.getMenu().findItem(R.id.uncheckedItem).setChecked(true);
+
     }
 
     private void hideSystemBars() {

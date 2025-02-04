@@ -9,7 +9,8 @@
         android:id="@+id/icon_peliculas"
         android:name="com.binaryBuddies.cinedore.ui.peliculas.PeliculasFragment"
         android:label="@string/title_activity_peliculas"
-        tools:layout="@layout/fragment_peliculas" />
+        tools:layout="@layout/fragment_peliculas"
+        />
 
     <fragment
         android:id="@+id/icon_pin"

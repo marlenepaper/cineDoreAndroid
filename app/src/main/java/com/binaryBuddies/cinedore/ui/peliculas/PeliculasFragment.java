@@ -11,43 +11,76 @@ import android.view.View;
 import android.view.ViewGroup;
 import com.binaryBuddies.cinedore.R;
 import com.binaryBuddies.cinedore.adapters.PeliculasAdapter;
+import com.binaryBuddies.cinedore.models.FuncionModel;
 import com.binaryBuddies.cinedore.models.PeliculaModel;
 import java.util.ArrayList;
+import java.util.List;
 
 public class PeliculasFragment extends Fragment {
 
-    private RecyclerView recyclerView;
-    private PeliculasAdapter peliculasAdapter;
-    private ArrayList<PeliculaModel> listaPeliculas;
+
+    private ArrayList<PeliculaModel> listaPeliculas=new ArrayList<>();
 
     public PeliculasFragment() {
-        // Constructor vacío requerido
+
     }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
         View view = inflater.inflate(R.layout.fragment_peliculas, container, false);
 
-        recyclerView = view.findViewById(R.id.recyclerPeliculas);
-
-
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 2);
-        recyclerView.setLayoutManager(gridLayoutManager);
-
+        RecyclerView recyclerView = view.findViewById(R.id.recyclerPeliculas);
         cargarPeliculas();
 
-        peliculasAdapter = new PeliculasAdapter(getContext(), listaPeliculas);
-        recyclerView.setAdapter(peliculasAdapter);
+        PeliculasAdapter peliculasAdapter = new PeliculasAdapter(requireContext(), listaPeliculas);
 
+        recyclerView.setAdapter(peliculasAdapter);
+        recyclerView.setLayoutManager(new GridLayoutManager(requireContext(), 2));
 
         return view;
     }
 
-    private void cargarPeliculas() {
-        listaPeliculas = new ArrayList<>();
 
+
+    private void cargarPeliculas() {
+
+        // Lista de funciones para cada película (todas en febrero)
+
+        List<FuncionModel> funcionesYuli = new ArrayList<>();
+        funcionesYuli.add(new FuncionModel("Lunes 5 de Febrero", "17:00"));
+        funcionesYuli.add(new FuncionModel("Jueves 8 de Febrero", "18:30"));
+        funcionesYuli.add(new FuncionModel("Sábado 10 de Febrero", "20:45"));
+
+        List<FuncionModel> funcionesSobornados = new ArrayList<>();
+        funcionesSobornados.add(new FuncionModel("Martes 6 de Febrero", "16:00"));
+        funcionesSobornados.add(new FuncionModel("Viernes 9 de Febrero", "19:15"));
+
+        List<FuncionModel> funcionesOtraVezJuntos = new ArrayList<>();
+        funcionesOtraVezJuntos.add(new FuncionModel("Miércoles 7 de Febrero", "18:00"));
+        funcionesOtraVezJuntos.add(new FuncionModel("Domingo 11 de Febrero", "21:00"));
+
+        List<FuncionModel> funcionesMalaventura = new ArrayList<>();
+        funcionesMalaventura.add(new FuncionModel("Jueves 15 de Febrero", "20:00"));
+        funcionesMalaventura.add(new FuncionModel("Sábado 17 de Febrero", "22:30"));
+
+        List<FuncionModel> funcionesBridesmaid = new ArrayList<>();
+        funcionesBridesmaid.add(new FuncionModel("Viernes 16 de Febrero", "19:00"));
+        funcionesBridesmaid.add(new FuncionModel("Lunes 19 de Febrero", "21:15"));
+
+        List<FuncionModel> funcionesBodaRosa = new ArrayList<>();
+        funcionesBodaRosa.add(new FuncionModel("Sábado 24 de Febrero", "16:30"));
+        funcionesBodaRosa.add(new FuncionModel("Martes 27 de Febrero", "18:45"));
+
+        List<FuncionModel> funcionesDiaries = new ArrayList<>();
+        funcionesDiaries.add(new FuncionModel("Domingo 18 de Febrero", "17:00"));
+        funcionesDiaries.add(new FuncionModel("Miércoles 28 de Febrero", "19:30"));
+
+        List<FuncionModel> funcionesCamadaNegra = new ArrayList<>();
+        funcionesCamadaNegra.add(new FuncionModel("Viernes 23 de Febrero", "20:00"));
+        funcionesCamadaNegra.add(new FuncionModel("Lunes 26 de Febrero", "22:00"));
+
+        // Agregar películas con sus funciones
         listaPeliculas.add(new PeliculaModel(
                 "Yuli",
                 "2018",
@@ -57,7 +90,8 @@ public class PeliculasFragment extends Fragment {
                 "Drama",
                 "NR",
                 "Digital",
-                "Español"
+                "Español",
+                funcionesYuli
         ));
 
         listaPeliculas.add(new PeliculaModel(
@@ -69,7 +103,8 @@ public class PeliculasFragment extends Fragment {
                 "Cine negro",
                 "NR",
                 "35 mm",
-                "Inglés"
+                "Inglés",
+                funcionesSobornados
         ));
 
         listaPeliculas.add(new PeliculaModel(
@@ -81,7 +116,8 @@ public class PeliculasFragment extends Fragment {
                 "Comedia",
                 "NR",
                 "Digital",
-                "Inglés"
+                "Inglés",
+                funcionesOtraVezJuntos
         ));
 
         listaPeliculas.add(new PeliculaModel(
@@ -93,7 +129,8 @@ public class PeliculasFragment extends Fragment {
                 "Drama",
                 "NR",
                 "Digital",
-                "Español"
+                "Español",
+                funcionesMalaventura
         ));
 
         listaPeliculas.add(new PeliculaModel(
@@ -105,7 +142,8 @@ public class PeliculasFragment extends Fragment {
                 "Comedia",
                 "NR",
                 "Digital",
-                "Inglés"
+                "Inglés",
+                funcionesBridesmaid
         ));
 
         listaPeliculas.add(new PeliculaModel(
@@ -117,7 +155,8 @@ public class PeliculasFragment extends Fragment {
                 "Comedia",
                 "NR",
                 "Digital",
-                "Español"
+                "Español",
+                funcionesBodaRosa
         ));
 
         listaPeliculas.add(new PeliculaModel(
@@ -129,7 +168,8 @@ public class PeliculasFragment extends Fragment {
                 "Documental",
                 "NR",
                 "16 mm",
-                "Inglés"
+                "Inglés",
+                funcionesDiaries
         ));
 
         listaPeliculas.add(new PeliculaModel(
@@ -141,7 +181,8 @@ public class PeliculasFragment extends Fragment {
                 "Drama",
                 "NR",
                 "Digital",
-                "Español"
+                "Español",
+                funcionesCamadaNegra
         ));
     }
 }
