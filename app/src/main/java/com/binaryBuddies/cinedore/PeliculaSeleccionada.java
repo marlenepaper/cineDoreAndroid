@@ -42,10 +42,10 @@ public class PeliculaSeleccionada extends AppCompatActivity {
         binding.nombre.setText(titulo);
         binding.anio.setText(anio);
         binding.duracion.setText(duracion);
-        binding.sinopsis.setText(sinopsis);
+//        binding.sinopsis.setText(sinopsis);
         binding.categoria.setText(categoria);
         binding.clasificacion.setText(clasificacion);
-        binding.formato.setText(formato);
+//        binding.formato.setText(formato);
         binding.lenguaje.setText(lenguaje);
 
         // Cargar imagen con Glide

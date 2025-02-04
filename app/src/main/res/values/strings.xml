@@ -7,6 +7,7 @@
     <string name="titulo_pelicula_seleccionada">La Dolce Vita</string>
     <string name="genero_pelicula_seleccionada">Drama</string>
     <string name="ano_pelicula_seleccionada">1960</string>
+    <string name="slash">|</string>
     <string name="duracion_pelicula_seleccionada">1h 14m</string>
     <string name="clasificacion_pelicula_seleccionada">18</string>
     <string name="lenguaje_pelicula_seleccionada">VOSE</string>
@@ -19,27 +20,6 @@
     <string name="fechas_de_cierre">Instalaciones cerradas: 1 y 6 Enero</string>
 
 
-<!--    <string-array name="butaca_culltural">-->
-<!--        <item>Bright Future</item>-->
-<!--        <item>Indiana</item>-->
-<!--        <item>Out Getting Ribs</item>-->
-<!--        <item>Santa Maria de Feira</item>-->
-<!--        <item>Long Haired Child</item>-->
-<!--        <item>Vincent OBrien</item>-->
-<!--        <item>Momento</item>-->
-<!--    </string-array>-->
-<!--    -->
-<!--    <string-array name="pelicula_seleccionada">-->
-<!--        <item>Bright Future</item>-->
-<!--        <item>Indiana</item>-->
-<!--        <item>Out Getting Ribs</item>-->
-<!--        <item>Santa Maria de Feira</item>-->
-<!--        <item>Long Haired Child</item>-->
-<!--        <item>Vincent OBrien</item>-->
-<!--        <item>Momento</item>-->
-<!--    </string-array>-->
-
-
 
     <!-- Compartidos -->
     <string name="inicia_sesion">Inicia sesión</string>
@@ -47,6 +27,20 @@
     <string name="correo">Dirección de correo electrónico*</string>
     <string name="contrasena">Contraseña*</string>
     <string name="sala">Sala:</string>
+    <string name="formato_title">Formato:</string>
+
+    <!-- Pantalla de sinopsis -->
+    <string name="formato">(DCP) Proyeccion en Formato Digital</string>
+    <string name="formato_tamano">175’</string>
+    <string name="formato_color">B/N</string>
+
+
+    <string name="sinopsis_titulo">Información de la película</string>
+    <string name="sinopsis_desarrollo">La historia sigue a Marcello Rubini (interpretado por Mastroianni), un periodista de la prensa sensacionalista que cubre la vida de la alta sociedad romana. Durante siete días y siete noches, Marcello se mueve entre fiestas, amoríos y momentos de introspección, mientras busca un sentido más profundo a su vida en medio del vacío existencial y la decadencia moral de la Roma de la posguerra.</string>
+
+    <!-- Pantalla de horarios -->
+    <string name="horario_dia">Miércoles 15 de Enero</string>
+    <string name="horario_hora">17:00</string>
 
     <!-- Pantalla de bienvenida -->
     <string name="bienvenida_titulo">Bienvenido al</string>
