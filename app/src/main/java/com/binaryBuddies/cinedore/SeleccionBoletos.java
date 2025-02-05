@@ -9,14 +9,20 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.core.view.WindowInsetsControllerCompat;
 
+import com.binaryBuddies.cinedore.databinding.ActivitySeleccionBoletosBinding;
+
 public class SeleccionBoletos extends AppCompatActivity {
+
+    private ActivitySeleccionBoletosBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         hideSystemBars();
-        setContentView(R.layout.activity_seleccion_boletos);
+
+        binding = ActivitySeleccionBoletosBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
     }
     private void hideSystemBars() {
