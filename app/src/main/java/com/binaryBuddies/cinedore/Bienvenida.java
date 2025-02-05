@@ -2,6 +2,8 @@ package com.binaryBuddies.cinedore;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.View;
 import android.widget.TextView;
 
@@ -10,39 +12,26 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.core.view.WindowInsetsControllerCompat;
 
+import com.binaryBuddies.cinedore.databinding.ActivityBienvenidaBinding;
+import com.binaryBuddies.cinedore.ui.peliculas.PeliculasFragment;
+
 public class Bienvenida extends AppCompatActivity {
+
+    private ActivityBienvenidaBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         hideSystemBars();
-        setContentView(R.layout.activity_bienvenida);
 
-        TextView btnIniciarSesion = findViewById(R.id.iniciar_sesion);
-        TextView btnCrearCuenta = findViewById(R.id.crea_tu_cuenta_titulo);
-        TextView txtInvitado = findViewById(R.id.continua_como_invitado);
+        binding = ActivityBienvenidaBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
-        btnIniciarSesion.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                launchIniciaSesion();
-            }
-        });
-
-        btnCrearCuenta.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                launchCrearTuCuenta();
-            }
-        });
-
-        txtInvitado.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                launchPeliculas();
-            }
-        });
+        // listeners con lambdas
+        binding.iniciarSesion.setOnClickListener(view -> launchIniciaSesion());
+        binding.creaTuCuentaTitulo.setOnClickListener(view -> launchCrearTuCuenta());
+        binding.continuaComoInvitado.setOnClickListener(view -> launchPeliculas());
 
     }
 
@@ -54,10 +43,14 @@ public class Bienvenida extends AppCompatActivity {
         Intent intent = new Intent(Bienvenida.this, CrearCuenta.class);
         startActivity(intent);
     }
+
     public void launchPeliculas() {
         Intent intent = new Intent(Bienvenida.this, NavegationBar.class);
         startActivity(intent);
+        finish();
     }
+
+
 
     private void hideSystemBars() {
         WindowInsetsControllerCompat windowInsetsController =

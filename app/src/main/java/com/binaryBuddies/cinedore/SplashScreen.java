@@ -10,15 +10,20 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.core.view.WindowInsetsControllerCompat;
 
+import com.binaryBuddies.cinedore.databinding.ActivitySplashScreenBinding;
+
 public class SplashScreen extends AppCompatActivity {
+
+    private ActivitySplashScreenBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         hideSystemBars();
-        setContentView(R.layout.activity_splash_screen);
 
+        binding = ActivitySplashScreenBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
         launchInicioRegistro();
     }
@@ -32,7 +37,7 @@ public class SplashScreen extends AppCompatActivity {
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
             }
-        }, 4000);//1500
+        }, 4000);
     }
     private void hideSystemBars() {
         WindowInsetsControllerCompat windowInsetsController =

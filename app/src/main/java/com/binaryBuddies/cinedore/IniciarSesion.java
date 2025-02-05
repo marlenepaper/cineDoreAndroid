@@ -11,7 +11,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.core.view.WindowInsetsControllerCompat;
 
+import com.binaryBuddies.cinedore.databinding.ActivityIniciarSesionBinding;
+
 public class IniciarSesion extends AppCompatActivity {
+
+    private ActivityIniciarSesionBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,32 +24,12 @@ public class IniciarSesion extends AppCompatActivity {
         hideSystemBars();
 
 
-        setContentView(R.layout.activity_iniciar_sesion);
+        binding = ActivityIniciarSesionBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
-        ImageButton arrowback= findViewById(R.id.icono_flecha_regresar);
-        TextView btnIniciarSesion = findViewById(R.id.iniciar_sesion);
-        TextView txtInvitado = findViewById(R.id.ya_tienes_cuenta);
-
-        arrowback.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                launchRegistro();
-            }
-        });
-
-        btnIniciarSesion.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                launchIniciaSesion();
-            }
-        });
-
-        txtInvitado.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                launchCreaTuCuenta();
-            }
-        });
+        binding.iconoFlechaRegresar.setOnClickListener(view -> launchRegistro());
+        binding.iniciarSesion.setOnClickListener(view -> launchIniciaSesion());
+        binding.yaTienesCuenta.setOnClickListener(view -> launchCreaTuCuenta());
     }
 
     public void launchRegistro() {
@@ -56,7 +40,9 @@ public class IniciarSesion extends AppCompatActivity {
     public void launchIniciaSesion() {
         Intent intent = new Intent(IniciarSesion.this, NavegationBar.class);
         startActivity(intent);
+        finishAffinity(); // Cierra todas las actividades previas
     }
+
 
     public void launchCreaTuCuenta() {
         Intent intent = new Intent(IniciarSesion.this, CrearCuenta.class);

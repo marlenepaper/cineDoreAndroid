@@ -11,49 +11,28 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.core.view.WindowInsetsControllerCompat;
 
+import com.binaryBuddies.cinedore.databinding.ActivityCrearCuentaBinding;
+
 public class CrearCuenta extends AppCompatActivity {
+
+    private ActivityCrearCuentaBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         hideSystemBars();
-        setContentView(R.layout.activity_crear_cuenta);
 
-        ImageButton arrowback= findViewById(R.id.icono_flecha_regresar);
-        TextView btnCrearCuenta = findViewById(R.id.crear_cuenta);
-        TextView txtIniciaSesion = findViewById(R.id.ya_tienes_cuenta);
+        binding = ActivityCrearCuentaBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
-        arrowback.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                launchRegistro();
-            }
-        });
-
-        btnCrearCuenta.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                launchPeliculas();
-            }
-        });
-
-        txtIniciaSesion.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                launchIniciaSesion();
-            }
-        });
-
+        binding.iconoFlechaRegresar.setOnClickListener(view -> launchRegistro());
+        binding.crearCuenta.setOnClickListener(view -> launchRegistro());
+        binding.yaTienesCuenta.setOnClickListener(view -> launchIniciaSesion());
     }
 
     public void launchRegistro() {
         Intent intent = new Intent(CrearCuenta.this, Bienvenida.class);
-        startActivity(intent);
-    }
-
-    public void launchPeliculas() {
-        Intent intent = new Intent(CrearCuenta.this, NavegationBar.class);
         startActivity(intent);
     }
 
