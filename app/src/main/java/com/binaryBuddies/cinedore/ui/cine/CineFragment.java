@@ -16,10 +16,9 @@ public class CineFragment extends Fragment {
 
     private FragmentCineBinding binding;
 
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
-        CineViewModel homeViewModel =
-                new ViewModelProvider(this).get(CineViewModel.class);
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
+        CineViewModel homeViewModel = new ViewModelProvider(this).get(CineViewModel.class);
 
         binding = FragmentCineBinding.inflate(inflater, container, false);
         View root = binding.getRoot();

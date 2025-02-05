@@ -15,10 +15,9 @@ public class PerfilFragment extends Fragment {
 
     private FragmentPerfilBinding binding;
 
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
-        PerfilViewModel notificationsViewModel =
-                new ViewModelProvider(this).get(PerfilViewModel.class);
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
+        PerfilViewModel notificationsViewModel = new ViewModelProvider(this).get(PerfilViewModel.class);
 
         binding = FragmentPerfilBinding.inflate(inflater, container, false);
         View root = binding.getRoot();

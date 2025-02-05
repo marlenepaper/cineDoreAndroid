@@ -1,31 +1,23 @@
 package com.binaryBuddies.cinedore;
-
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.ImageButton;
-
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.core.view.WindowInsetsControllerCompat;
 import androidx.viewpager.widget.ViewPager;
-
 import com.binaryBuddies.cinedore.adapters.PeliculaSeleccionadaAdapter;
 import com.binaryBuddies.cinedore.databinding.ActivityPeliculaSeleccionadaBinding;
-import com.binaryBuddies.cinedore.ui.peliculas.PeliculasFragment;
 import com.bumptech.glide.Glide;
 import com.google.android.material.tabs.TabLayout;
 
 public class PeliculaSeleccionada extends AppCompatActivity {
-
 
     private ActivityPeliculaSeleccionadaBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         EdgeToEdge.enable(this);
         hideSystemBars();
 
@@ -36,21 +28,17 @@ public class PeliculaSeleccionada extends AppCompatActivity {
         String titulo = getIntent().getStringExtra("nombre");
         String anio = getIntent().getStringExtra("anio");
         String duracion = getIntent().getStringExtra("duracion");
-        String sinopsis = getIntent().getStringExtra("sinopsis");
         String imagenPoster = getIntent().getStringExtra("imagenPoster");
         String categoria = getIntent().getStringExtra("categoria");
         String clasificacion = getIntent().getStringExtra("clasificacion");
-        String formato = getIntent().getStringExtra("formato");
         String lenguaje = getIntent().getStringExtra("lenguaje");
 
         // Asignar datos a los elementos de la vista
         binding.nombre.setText(titulo);
         binding.anio.setText(anio);
         binding.duracion.setText(duracion);
-//        binding.sinopsis.setText(sinopsis);
         binding.categoria.setText(categoria);
         binding.clasificacion.setText(clasificacion);
-//        binding.formato.setText(formato);
         binding.lenguaje.setText(lenguaje);
 
         // Cargar imagen con Glide
@@ -69,15 +57,9 @@ public class PeliculaSeleccionada extends AppCompatActivity {
         tabLayout.getTabAt(0).setText("Horarios");
         tabLayout.getTabAt(1).setText("Sinopsis");
 
-
-        ImageButton arrowBack = findViewById(R.id.icono_flecha_regresar);
-        arrowBack.setOnClickListener(view -> finish());
-
+        binding.iconoFlechaRegresar.setOnClickListener(view -> finish());
 
     }
-
-
-
 
     private void hideSystemBars() {
         WindowInsetsControllerCompat windowInsetsController =

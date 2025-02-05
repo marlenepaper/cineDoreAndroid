@@ -15,10 +15,9 @@ public class TicketFragment extends Fragment {
 
     private FragmentTicketQrBinding binding;
 
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
-        TicketViewModel dashboardViewModel =
-                new ViewModelProvider(this).get(TicketViewModel.class);
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
+        TicketViewModel dashboardViewModel = new ViewModelProvider(this).get(TicketViewModel.class);
 
         binding = FragmentTicketQrBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
