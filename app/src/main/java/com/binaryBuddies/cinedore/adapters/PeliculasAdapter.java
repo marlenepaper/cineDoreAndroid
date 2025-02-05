@@ -19,22 +19,22 @@ import com.bumptech.glide.load.model.LazyHeaders;
 import com.bumptech.glide.request.RequestOptions;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class PeliculasAdapter extends RecyclerView.Adapter<PeliculasAdapter.MyViewHolder> {
 
-    private Context context;
-    private ArrayList<PeliculaModel> peliculaModelList;
+    private final Context context;
+    private final List<PeliculaModel> peliculaModelList;
 
-    public PeliculasAdapter(Context context, ArrayList<PeliculaModel> peliculaModelList) {
+    public PeliculasAdapter(Context context, List<PeliculaModel> peliculaModelList) {
         this.context = context;
-        this.peliculaModelList = (peliculaModelList != null) ? peliculaModelList : new ArrayList<>();
+        this.peliculaModelList = (peliculaModelList != null) ? new ArrayList<>(peliculaModelList) : new ArrayList<>();
     }
 
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        LayoutInflater inflater = LayoutInflater.from(context);
-        View view = inflater.inflate(R.layout.item_pelicula, parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.item_pelicula, parent, false);
         return new MyViewHolder(view);
     }
 
@@ -59,11 +59,9 @@ public class PeliculasAdapter extends RecyclerView.Adapter<PeliculasAdapter.MyVi
                     .into(holder.imagenPoster);
         }
 
-        // Manejar clics en la imagen
+        // Manejar clics en la imagen para abrir la pantalla de detalles
         holder.imagenPoster.setOnClickListener(v -> {
             Intent intent = new Intent(context, PeliculaSeleccionada.class);
-
-            // Pasar los datos de la película seleccionada a la nueva actividad
             intent.putExtra("nombre", pelicula.getNombre());
             intent.putExtra("anio", pelicula.getAnio());
             intent.putExtra("duracion", pelicula.getDuracion());
@@ -74,7 +72,6 @@ public class PeliculasAdapter extends RecyclerView.Adapter<PeliculasAdapter.MyVi
             intent.putExtra("formato", pelicula.getFormato());
             intent.putExtra("lenguaje", pelicula.getLenguaje());
 
-            // Iniciar la actividad
             context.startActivity(intent);
         });
     }
@@ -82,6 +79,13 @@ public class PeliculasAdapter extends RecyclerView.Adapter<PeliculasAdapter.MyVi
     @Override
     public int getItemCount() {
         return peliculaModelList.size();
+    }
+
+    // Método para actualizar los datos sin recrear el adapter
+    public void setPeliculas(List<PeliculaModel> nuevasPeliculas) {
+        peliculaModelList.clear();
+        peliculaModelList.addAll(nuevasPeliculas);
+        notifyDataSetChanged(); // Notifica al RecyclerView que los datos han cambiado
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
@@ -93,3 +97,5 @@ public class PeliculasAdapter extends RecyclerView.Adapter<PeliculasAdapter.MyVi
         }
     }
 }
+
+

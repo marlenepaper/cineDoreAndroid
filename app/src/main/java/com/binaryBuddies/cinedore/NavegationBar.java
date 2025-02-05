@@ -1,14 +1,7 @@
 package com.binaryBuddies.cinedore;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.ImageButton;
-
 import com.binaryBuddies.cinedore.databinding.ActivityNavegationBarBinding;
-import com.binaryBuddies.cinedore.ui.peliculas.PeliculasFragment;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.WindowInsetsCompat;
