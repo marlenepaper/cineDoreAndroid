@@ -20,7 +20,7 @@ public class PeliculaModel {
         this.nombre = nombre;
         this.anio = anio;
         this.duracion = duracion;
-        this.sinopsis = sinopsis;  // Corregido el error tipográfico
+        this.sinopsis = sinopsis;
         this.imagenPoster = imagenPoster;
         this.categoria = categoria;
         this.clasificacion = clasificacion;

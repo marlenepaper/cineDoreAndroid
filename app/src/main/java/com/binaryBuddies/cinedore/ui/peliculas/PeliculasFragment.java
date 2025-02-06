@@ -28,11 +28,10 @@ public class PeliculasFragment extends Fragment {
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // Habilitar ViewBinding
-        binding = FragmentPeliculasBinding.inflate(inflater, container, false);
-        View root = binding.getRoot(); // Obtener la vista raíz
 
-        // Configurar RecyclerView usando binding
+        binding = FragmentPeliculasBinding.inflate(inflater, container, false);
+        View root = binding.getRoot();
+
         binding.recyclerPeliculas.setLayoutManager(new GridLayoutManager(requireContext(), 2));
 
         peliculasAdapter = new PeliculasAdapter(requireContext(), new ArrayList<>());
@@ -40,9 +39,9 @@ public class PeliculasFragment extends Fragment {
 
         peliculasViewModel = new ViewModelProvider(this).get(PeliculasViewModel.class);
 
-        // Observar cambios en la lista y actualizar el adapter
+
         peliculasViewModel.getPeliculas().observe(getViewLifecycleOwner(), lista -> {
-            peliculasAdapter.setPeliculas(lista);  // Nuevo método para actualizar datos
+            peliculasAdapter.setPeliculas(lista);
             peliculasAdapter.notifyDataSetChanged();
         });
         return root;
@@ -51,7 +50,7 @@ public class PeliculasFragment extends Fragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        binding = null; // Evitar fugas de memoria
+        binding = null;
     }
 }
 

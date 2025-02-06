@@ -20,8 +20,16 @@ public class HorariosFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentHorariosBinding.inflate(inflater, container, false);
-        return binding.getRoot(); // Retorna la vista raíz inflada
+        View view = binding.getRoot(); // Guarda la vista antes de retornarla
 
+        // Obtener el argumento pasado desde PeliculaSeleccionada
+        Bundle args = getArguments();
+        if (args != null) {
+            String funcionesTexto = args.getString("funciones", "Sin funciones disponibles");
+            binding.funcionesPelicula.setText(funcionesTexto);
+        }
+
+        return view; // Retorna la vista después de modificarla
 
     }
     @Override

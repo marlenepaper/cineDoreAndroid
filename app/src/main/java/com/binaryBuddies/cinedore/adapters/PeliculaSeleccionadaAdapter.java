@@ -8,7 +8,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
 import com.binaryBuddies.cinedore.ui.peliculaSeleccionada.HorariosFragment;
-import com.binaryBuddies.cinedore.ui.peliculaSeleccionada.SipnosisFragment;
+import com.binaryBuddies.cinedore.ui.peliculaSeleccionada.SinopsisFragment;
 
 public class PeliculaSeleccionadaAdapter extends FragmentPagerAdapter {
 
@@ -27,7 +27,7 @@ public class PeliculaSeleccionadaAdapter extends FragmentPagerAdapter {
             case 0:
                 return new HorariosFragment();
             case 1:
-                return new SipnosisFragment();
+                return new SinopsisFragment();
             default:
                 return null;
         }

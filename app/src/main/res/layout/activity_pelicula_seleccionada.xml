@@ -169,6 +169,7 @@
                                     android:text="@string/lenguaje_pelicula_seleccionada"
                                     android:textAlignment="center"
                                     android:textSize="12dp" />
+
                             </LinearLayout>
 
                         </LinearLayout>

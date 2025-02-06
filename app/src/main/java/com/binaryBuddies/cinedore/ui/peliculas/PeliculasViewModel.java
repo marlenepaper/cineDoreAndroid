@@ -16,7 +16,7 @@ public class PeliculasViewModel extends ViewModel {
 
     public PeliculasViewModel() {
         peliculas = new MutableLiveData<>();
-        cargarPeliculas();  // Método para inicializar los datos
+        cargarPeliculas();
     }
 
     public LiveData<List<PeliculaModel>> getPeliculas() {
