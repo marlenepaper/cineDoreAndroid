@@ -75,11 +75,13 @@ public class PeliculasAdapter extends RecyclerView.Adapter<PeliculasAdapter.MyVi
                 intent.putExtra("clasificacion", pelicula.getClasificacion());
                 intent.putExtra("lenguaje", pelicula.getLenguaje());
                 intent.putExtra("color", pelicula.getColor());
+
                 intent.putStringArrayListExtra("formatos_nombres", obtenerFormatosNombres(pelicula.getFormato()));
                 intent.putStringArrayListExtra("formatos_detalles", obtenerFormatosDetalles(pelicula.getFormato()));
 
+                intent.putStringArrayListExtra("funciones_fechas", obtenerFuncionesFechas(pelicula.getFunciones()));
+                intent.putStringArrayListExtra("funciones_salas", obtenerFuncionesSalas(pelicula.getFunciones()));
 
-//                intent.putExtra("funciones", funcionesTexto);
                 context.startActivity(intent);
             });
         }
@@ -116,6 +118,27 @@ public class PeliculasAdapter extends RecyclerView.Adapter<PeliculasAdapter.MyVi
             }
         }
         return detalles;
+    }
+
+    private ArrayList<String> obtenerFuncionesFechas(List<FuncionModel> funciones) {
+        ArrayList<String> fechas = new ArrayList<>();
+        if (funciones != null) {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+            for (FuncionModel funcion : funciones) {
+                fechas.add(funcion.getFechaHora().format(formatter));
+            }
+        }
+        return fechas;
+    }
+
+    private ArrayList<String> obtenerFuncionesSalas(List<FuncionModel> funciones) {
+        ArrayList<String> salas = new ArrayList<>();
+        if (funciones != null) {
+            for (FuncionModel funcion : funciones) {
+                salas.add(funcion.getSala());
+            }
+        }
+        return salas;
     }
 
 
