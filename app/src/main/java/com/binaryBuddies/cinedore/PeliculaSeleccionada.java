@@ -35,28 +35,13 @@ public class PeliculaSeleccionada extends AppCompatActivity {
         String clasificacion = getIntent().getStringExtra("clasificacion");
         String lenguaje = getIntent().getStringExtra("lenguaje");
 
-
-        String funcionesTexto = getIntent().getStringExtra("funciones");
-
         // Asignar datos a los elementos de la vista
         binding.nombre.setText(titulo);
         binding.anio.setText(anio);
         binding.duracion.setText(duracion);
-//        binding.sinopsis.setText(sinopsis);
         binding.categoria.setText(categoria);
         binding.clasificacion.setText(clasificacion);
-//        binding.formato.setText(formato);
         binding.lenguaje.setText(lenguaje);
-
-        HorariosFragment horariosFragment = new HorariosFragment();
-        Bundle bundle = new Bundle();
-        bundle.putString("funciones", funcionesTexto);
-        horariosFragment.setArguments(bundle);
-
-//        SinopsisFragment sinopsisFragment = new SinopsisFragment();
-//        Bundle bundle = new Bundle();
-//        bundle.putString("funciones", funcionesTexto);
-//        sinopsisFragment.setArguments(bundle);
 
         // Cargar imagen con Glide
         Glide.with(this).load(imagenPoster).into(binding.imagenPoster);
@@ -64,7 +49,6 @@ public class PeliculaSeleccionada extends AppCompatActivity {
         PeliculaSeleccionadaAdapter peliculaSeleccionadaAdapter = new PeliculaSeleccionadaAdapter(this, getSupportFragmentManager());
         ViewPager viewPager = binding.viewPager;
         viewPager.setAdapter(peliculaSeleccionadaAdapter);
-
 
         // Configurar TabLayout con ViewPager
         TabLayout tabLayout = binding.tabLayout;

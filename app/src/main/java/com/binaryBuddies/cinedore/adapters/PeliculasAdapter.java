@@ -30,7 +30,6 @@ public class PeliculasAdapter extends RecyclerView.Adapter<PeliculasAdapter.MyVi
 
     private final Context context;
     private final List<PeliculaModel> peliculaModelList;
-    private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
 
     public PeliculasAdapter(Context context, List<PeliculaModel> peliculaModelList) {
         this.context = context;
@@ -64,10 +63,6 @@ public class PeliculasAdapter extends RecyclerView.Adapter<PeliculasAdapter.MyVi
                     .into(holder.imagenPoster);
 
 
-            // Concatenar las funciones en un solo string y mostrarlas
-//            List<FuncionModel> funciones = pelicula.getFunciones();
-//            String funcionesTexto = (funciones != null) ? formatearFunciones(funciones) : "Sin funciones disponibles";
-
             // Manejar clic en la imagen para abrir la pantalla de detalles
             holder.imagenPoster.setOnClickListener(v -> {
                 Intent intent = new Intent(context, PeliculaSeleccionada.class);
@@ -80,12 +75,8 @@ public class PeliculasAdapter extends RecyclerView.Adapter<PeliculasAdapter.MyVi
                 intent.putExtra("clasificacion", pelicula.getClasificacion());
                 intent.putExtra("lenguaje", pelicula.getLenguaje());
                 intent.putExtra("color", pelicula.getColor());
-
-
-
-                intent.putStringArrayListExtra("formatos", obtenerFormatosComoString(pelicula.getFormato()));
-
-
+                intent.putStringArrayListExtra("formatos_nombres", obtenerFormatosNombres(pelicula.getFormato()));
+                intent.putStringArrayListExtra("formatos_detalles", obtenerFormatosDetalles(pelicula.getFormato()));
 
 
 //                intent.putExtra("funciones", funcionesTexto);
@@ -107,34 +98,27 @@ public class PeliculasAdapter extends RecyclerView.Adapter<PeliculasAdapter.MyVi
     }
 
 
-
-
-    private ArrayList<String> obtenerFormatosComoString(List<FormatoModel> formatos) {
-        ArrayList<String> formatosString = new ArrayList<>();
+    private ArrayList<String> obtenerFormatosNombres(List<FormatoModel> formatos) {
+        ArrayList<String> nombres = new ArrayList<>();
         if (formatos != null) {
             for (FormatoModel formato : formatos) {
-                String nombre = formato.getNombre();
-                String detalle = formato.getDetalle();
-                formatosString.add(nombre + " - " + detalle);
+                nombres.add(formato.getNombre());
             }
         }
-        return formatosString;
+        return nombres;
+    }
+
+    private ArrayList<String> obtenerFormatosDetalles(List<FormatoModel> formatos) {
+        ArrayList<String> detalles = new ArrayList<>();
+        if (formatos != null) {
+            for (FormatoModel formato : formatos) {
+                detalles.add(formato.getDetalle());
+            }
+        }
+        return detalles;
     }
 
 
-
-
-
-
-
-
-    // Método para convertir la lista de funciones en un String
-//    private String formatearFunciones(List<FuncionModel> funciones) {
-//        if (funciones == null || funciones.isEmpty()) return "Sin funciones disponibles";
-//        return funciones.stream()
-//                .map(f -> f.getFecha() + " - " + f.getHora())
-//                .collect(Collectors.joining("\n")); // Concatenar funciones separadas por saltos de línea
-//    }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         ImageView imagenPoster;

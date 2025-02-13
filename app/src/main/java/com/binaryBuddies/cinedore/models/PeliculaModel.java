@@ -67,7 +67,7 @@ public class PeliculaModel {
         return lenguaje;
     }
     public String getColor() {
-        return lenguaje;
+        return color;
     }
 
     public List<FormatoModel> getFormato() {

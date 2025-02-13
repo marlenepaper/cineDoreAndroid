@@ -26,15 +26,25 @@ public class SinopsisFragment extends Fragment {
         TextView tvSinopsisDesarrollo = view.findViewById(R.id.sinopsis_desarrollo);
         tvSinopsisDesarrollo.setText(sinopsis);
 
-        ArrayList<String> formatos = getActivity().getIntent().getStringArrayListExtra("formatos");
+        ArrayList<String> formatosNombres = getActivity().getIntent().getStringArrayListExtra("formatos_nombres");
+        ArrayList<String> formatosDetalles = getActivity().getIntent().getStringArrayListExtra("formatos_detalles");
 
-        // Unir los formatos en un solo string para mostrar en el TextView
         TextView tvFormato = view.findViewById(R.id.formato);
-        if (formatos != null && !formatos.isEmpty()) {
-            tvFormato.setText(String.join("\n", formatos)); // Une los formatos con un salto de línea
+        TextView tvFormatoDescripcion = view.findViewById(R.id.formato_descipcion);
+
+        if (formatosNombres != null && !formatosNombres.isEmpty() &&
+                formatosDetalles != null && !formatosDetalles.isEmpty()) {
+
+            tvFormato.setText(String.join("\n", formatosNombres));
+            tvFormatoDescripcion.setText(String.join("\n", formatosDetalles));
         } else {
-            tvFormato.setText("No disponible"); // Texto por defecto si no hay formatos
+            tvFormato.setText("No disponible");
+            tvFormatoDescripcion.setText("No disponible");
         }
+
+        String color = getActivity().getIntent().getStringExtra("color");
+        TextView tvColor = view.findViewById(R.id.formato_color);
+        tvColor.setText(color);
 
         return view;
     }
