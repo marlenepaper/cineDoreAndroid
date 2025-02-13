@@ -37,7 +37,7 @@
             >
 
             <TextView
-                android:id="@+id/formato"
+                android:id="@+id/formato_descipcion"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:text="@string/formato"
@@ -46,7 +46,7 @@
                 android:paddingHorizontal="8dp"/>
 
             <TextView
-                android:id="@+id/formato_tamano"
+                android:id="@+id/formato"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:text="@string/formato_tamano"

@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.binaryBuddies.cinedore.PeliculaSeleccionada;
 import com.binaryBuddies.cinedore.R;
+import com.binaryBuddies.cinedore.models.FormatoModel;
 import com.binaryBuddies.cinedore.models.FuncionModel;
 import com.binaryBuddies.cinedore.models.PeliculaModel;
 import com.bumptech.glide.Glide;
@@ -20,6 +21,7 @@ import com.bumptech.glide.load.model.GlideUrl;
 import com.bumptech.glide.load.model.LazyHeaders;
 import com.bumptech.glide.request.RequestOptions;
 
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -28,6 +30,7 @@ public class PeliculasAdapter extends RecyclerView.Adapter<PeliculasAdapter.MyVi
 
     private final Context context;
     private final List<PeliculaModel> peliculaModelList;
+    private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
 
     public PeliculasAdapter(Context context, List<PeliculaModel> peliculaModelList) {
         this.context = context;
@@ -46,28 +49,24 @@ public class PeliculasAdapter extends RecyclerView.Adapter<PeliculasAdapter.MyVi
         PeliculaModel pelicula = peliculaModelList.get(position);
 
         if (pelicula != null) {
-            // Cargar imagen con Glide
             GlideUrl glideUrl = new GlideUrl(pelicula.getImagenPoster(),
                     new LazyHeaders.Builder()
                             .addHeader("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64)")
                             .build());
 
             RequestOptions requestOptions = new RequestOptions()
-                    .placeholder(R.drawable.placeholder_image) // Imagen de carga
-                    .error(R.drawable.error_image); // Imagen si falla la carga
+                    .placeholder(R.drawable.placeholder_image)
+                    .error(R.drawable.error_image);
 
             Glide.with(context)
                     .load(glideUrl)
                     .apply(requestOptions)
                     .into(holder.imagenPoster);
 
-            // Asignar nombre de la película
-//            holder.tituloPelicula.setText(pelicula.getNombre());
 
             // Concatenar las funciones en un solo string y mostrarlas
-            List<FuncionModel> funciones = pelicula.getFunciones();
-            String funcionesTexto = (funciones != null) ? formatearFunciones(funciones) : "Sin funciones disponibles";
-//            holder.funcionesPelicula.setText(funcionesTexto);
+//            List<FuncionModel> funciones = pelicula.getFunciones();
+//            String funcionesTexto = (funciones != null) ? formatearFunciones(funciones) : "Sin funciones disponibles";
 
             // Manejar clic en la imagen para abrir la pantalla de detalles
             holder.imagenPoster.setOnClickListener(v -> {
@@ -79,10 +78,17 @@ public class PeliculasAdapter extends RecyclerView.Adapter<PeliculasAdapter.MyVi
                 intent.putExtra("imagenPoster", pelicula.getImagenPoster());
                 intent.putExtra("categoria", pelicula.getCategoria());
                 intent.putExtra("clasificacion", pelicula.getClasificacion());
-                intent.putExtra("formato", pelicula.getFormato());
                 intent.putExtra("lenguaje", pelicula.getLenguaje());
+                intent.putExtra("color", pelicula.getColor());
 
-                intent.putExtra("funciones", funcionesTexto);
+
+
+                intent.putStringArrayListExtra("formatos", obtenerFormatosComoString(pelicula.getFormato()));
+
+
+
+
+//                intent.putExtra("funciones", funcionesTexto);
                 context.startActivity(intent);
             });
         }
@@ -100,23 +106,43 @@ public class PeliculasAdapter extends RecyclerView.Adapter<PeliculasAdapter.MyVi
         notifyDataSetChanged();
     }
 
-    // Método para convertir la lista de funciones en un String
-    private String formatearFunciones(List<FuncionModel> funciones) {
-        if (funciones == null || funciones.isEmpty()) return "Sin funciones disponibles";
-        return funciones.stream()
-                .map(f -> f.getFecha() + " - " + f.getHora())
-                .collect(Collectors.joining("\n")); // Concatenar funciones separadas por saltos de línea
+
+
+
+    private ArrayList<String> obtenerFormatosComoString(List<FormatoModel> formatos) {
+        ArrayList<String> formatosString = new ArrayList<>();
+        if (formatos != null) {
+            for (FormatoModel formato : formatos) {
+                String nombre = formato.getNombre();
+                String detalle = formato.getDetalle();
+                formatosString.add(nombre + " - " + detalle);
+            }
+        }
+        return formatosString;
     }
+
+
+
+
+
+
+
+
+    // Método para convertir la lista de funciones en un String
+//    private String formatearFunciones(List<FuncionModel> funciones) {
+//        if (funciones == null || funciones.isEmpty()) return "Sin funciones disponibles";
+//        return funciones.stream()
+//                .map(f -> f.getFecha() + " - " + f.getHora())
+//                .collect(Collectors.joining("\n")); // Concatenar funciones separadas por saltos de línea
+//    }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         ImageView imagenPoster;
-        TextView tituloPelicula, funcionesPelicula;
+
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             imagenPoster = itemView.findViewById(R.id.imagenPoster);
-//            tituloPelicula = itemView.findViewById(R.id.tituloPelicula);
-            funcionesPelicula = itemView.findViewById(R.id.funcionesPelicula);
         }
     }
 }

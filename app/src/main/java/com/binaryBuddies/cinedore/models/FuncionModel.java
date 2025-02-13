@@ -1,19 +1,22 @@
 package com.binaryBuddies.cinedore.models;
 
+import java.time.LocalDateTime;
+
 public class FuncionModel {
-    private String fecha;
-    private String hora;
 
-    public FuncionModel(String fecha, String hora) {
-        this.fecha = fecha;
-        this.hora = hora;
+    private LocalDateTime fechaHora;
+    private String sala;
+
+    public FuncionModel(LocalDateTime fechaHora, String sala) {
+        this.fechaHora = fechaHora;
+        this.sala = sala;
     }
 
-    public String getFecha() {
-        return fecha;
+    public LocalDateTime getFechaHora() {
+        return fechaHora;
     }
 
-    public String getHora() {
-        return hora;
+    public String getSala() {
+        return sala;
     }
 }
