@@ -34,7 +34,6 @@ public class PeliculaSeleccionada extends AppCompatActivity {
         String categoria = getIntent().getStringExtra("categoria");
         String clasificacion = getIntent().getStringExtra("clasificacion");
         String lenguaje = getIntent().getStringExtra("lenguaje");
-        String sinopsis = getIntent().getStringExtra("sinopsis");
         String formato = getIntent().getStringExtra("formato");
 
         String funcionesTexto = getIntent().getStringExtra("funciones");
