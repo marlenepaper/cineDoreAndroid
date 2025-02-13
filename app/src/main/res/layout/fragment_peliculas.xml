@@ -24,42 +24,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <LinearLayout
-                android:id="@+id/parentPanel"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="105dp"
-                android:orientation="horizontal">
-
-                <LinearLayout
-                    android:id="@+id/hijo1"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="start"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/detalle_izquierda" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/hijo2"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="end"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/detalle_derecha" />
-                </LinearLayout>
-
-            </LinearLayout>
 
             <FrameLayout
                 android:layout_width="match_parent"
@@ -73,7 +37,7 @@
 
                     <ImageView
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="247dp"
                         android:layout_gravity="center"
                         android:background="@drawable/shape_pictures"
                         android:clipToOutline="true"
@@ -117,13 +81,13 @@
                     android:layout_width="309dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center|bottom"
-                    android:layout_marginTop="182dp"
+                    android:layout_marginTop="220dp"
                     android:background="@drawable/gradient_button"
                     android:gravity="center"
                     android:padding="10dp"
                     android:text="@string/fechas_de_cierre"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/body"
+                    android:textSize="@dimen/label"
 
                     />
 

@@ -23,20 +23,15 @@ public class HorariosFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_horarios, container, false);
 
+        // Solo obtener las fechas de las funciones
         ArrayList<String> funcionesFechas = getActivity().getIntent().getStringArrayListExtra("funciones_fechas");
-        ArrayList<String> funcionesSalas = getActivity().getIntent().getStringArrayListExtra("funciones_salas");
 
         TextView tvFuncionesFechas = view.findViewById(R.id.funciones_fechas);
-        TextView tvFuncionesSalas = view.findViewById(R.id.funciones_salas);
 
-        if (funcionesFechas != null && !funcionesFechas.isEmpty() &&
-                funcionesSalas != null && !funcionesSalas.isEmpty()) {
-
+        if (funcionesFechas != null && !funcionesFechas.isEmpty()) {
             tvFuncionesFechas.setText(String.join("\n", funcionesFechas));
-            tvFuncionesSalas.setText(String.join("\n", funcionesSalas));
         } else {
             tvFuncionesFechas.setText("No disponible");
-            tvFuncionesSalas.setText("No disponible");
         }
 
         return view;
