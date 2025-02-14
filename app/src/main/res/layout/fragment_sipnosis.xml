@@ -4,11 +4,11 @@
     android:layout_height="match_parent"
     android:background="@android:color/transparent">
 
-<!--    <ImageView-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent"-->
-<!--        android:scaleType="centerCrop"-->
-<!--        android:src="@drawable/background_darker" />-->
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/background_darker" />
 
 
     <LinearLayout
@@ -33,7 +33,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:background="@drawable/borde_formato_completo"
-            android:backgroundTint="@color/white_50"
+            android:backgroundTint="@color/formato_color"
             >
 
             <TextView
@@ -51,9 +51,10 @@
                 android:layout_height="match_parent"
                 android:text="@string/formato_tamano"
                 android:textSize="@dimen/label"
-                android:backgroundTint="@color/white_50"
+                android:backgroundTint="@color/formato_color"
                 android:background="@drawable/borde_lateral_formato"
-                android:gravity="center"/>
+                android:gravity="center"
+                android:paddingHorizontal="8dp"/>
 
             <TextView
                 android:id="@+id/formato_color"

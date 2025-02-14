@@ -2,7 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@android:color/transparent"
     >
@@ -14,6 +14,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:cardBackgroundColor="@android:color/transparent"
         >
 
         <TextView
@@ -22,7 +23,7 @@
             android:layout_height="wrap_content"
             android:padding="16dp"
             android:textSize="18sp"
-            android:background="?android:attr/selectableItemBackground"
+            android:background="@android:color/transparent"
             android:clickable="true"
             android:focusable="true"/>
 
