@@ -60,8 +60,9 @@
                             android:layout_gravity="bottom"
                             android:layout_marginStart="15dp"
                             android:text="@string/butaca_cultural_txt"
-                            android:textColor="@color/white"
-                            android:textSize="@dimen/label" />
+                            android:textColor="@color/white_opaco"
+                            android:textSize="@dimen/label"
+                            android:layout_marginBottom="-2dp"/>
 
                         <TextView
                             android:id="@+id/butaca_cultural_titulo"
@@ -90,6 +91,7 @@
                     android:text="@string/fechas_de_cierre"
                     android:textColor="@color/white"
                     android:textSize="@dimen/label"
+
 
                     />
 
