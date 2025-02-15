@@ -16,13 +16,14 @@ import com.binaryBuddies.cinedore.R;
 import com.binaryBuddies.cinedore.models.PeliculaModel;
 import com.binaryBuddies.cinedore.models.FuncionModel;
 
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class FuncionesAdapter extends RecyclerView.Adapter<FuncionesAdapter.FuncionViewHolder> {
 
     private final Context context;
-    private final PeliculaModel pelicula; // Agregamos la película
-    private final List<FuncionModel> funciones; // Lista de funciones
+    private final PeliculaModel pelicula;
+    private final List<FuncionModel> funciones;
 
     public FuncionesAdapter(Context context, PeliculaModel pelicula, List<FuncionModel> funciones) {
         this.context = context;
@@ -39,8 +40,11 @@ public class FuncionesAdapter extends RecyclerView.Adapter<FuncionesAdapter.Func
 
     @Override
     public void onBindViewHolder(@NonNull FuncionViewHolder holder, int position) {
+
+
         FuncionModel funcion = funciones.get(position);
-        holder.tvFuncionFecha.setText(funcion.getFechaHora().toString() + " - " + funcion.getSala());
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEEE dd 'de' MMMM");
+        holder.tvFuncionFecha.setText(capitalizeFirstLetter(funcion.getFechaHora().format(formatter).toString()));
 
         // Evento de clic para abrir la actividad con toda la información de la película y función
         holder.itemView.setOnClickListener(v -> {
@@ -77,5 +81,12 @@ public class FuncionesAdapter extends RecyclerView.Adapter<FuncionesAdapter.Func
             super(itemView);
             tvFuncionFecha = itemView.findViewById(R.id.funcion_fecha);
         }
+    }
+
+    public static String capitalizeFirstLetter(String text) {
+        if (text == null || text.isEmpty()) {
+            return text;
+        }
+        return text.substring(0, 1).toUpperCase() + text.substring(1);
     }
 }
