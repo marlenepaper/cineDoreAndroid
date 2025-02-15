@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.binaryBuddies.cinedore.CompraBoletos;
 import com.binaryBuddies.cinedore.R;
+import com.binaryBuddies.cinedore.SeleccionBoletos;
 import com.binaryBuddies.cinedore.models.PeliculaModel;
 import com.binaryBuddies.cinedore.models.FuncionModel;
 
@@ -50,7 +51,7 @@ public class FuncionesAdapter extends RecyclerView.Adapter<FuncionesAdapter.Func
 
         // Evento de clic para abrir la actividad con toda la información de la película y función
         holder.itemView.setOnClickListener(v -> {
-            Intent intent = new Intent(context, CompraBoletos.class);
+            Intent intent = new Intent(context, SeleccionBoletos.class);
 
             // Pasar la información de la película
             intent.putExtra("nombre", pelicula.getNombre());
