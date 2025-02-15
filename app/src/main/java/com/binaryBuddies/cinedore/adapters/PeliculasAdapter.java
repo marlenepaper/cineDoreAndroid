@@ -21,6 +21,7 @@ import com.bumptech.glide.load.model.GlideUrl;
 import com.bumptech.glide.load.model.LazyHeaders;
 import com.bumptech.glide.request.RequestOptions;
 
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
@@ -123,9 +124,8 @@ public class PeliculasAdapter extends RecyclerView.Adapter<PeliculasAdapter.MyVi
     private ArrayList<String> obtenerFuncionesFechas(List<FuncionModel> funciones) {
         ArrayList<String> fechas = new ArrayList<>();
         if (funciones != null) {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
             for (FuncionModel funcion : funciones) {
-                fechas.add(funcion.getFechaHora().format(formatter));
+                fechas.add(funcion.getFechaHora().toString());
             }
         }
         return fechas;

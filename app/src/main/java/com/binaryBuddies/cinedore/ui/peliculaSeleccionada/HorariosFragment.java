@@ -46,11 +46,9 @@ public class HorariosFragment extends Fragment {
         ArrayList<String> funcionesFechas = getActivity().getIntent().getStringArrayListExtra("funciones_fechas");
         ArrayList<String> funcionesSalas = getActivity().getIntent().getStringArrayListExtra("funciones_salas");
 
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
-
         List<FuncionModel> funciones = new ArrayList<>();
         for (int i = 0; i < funcionesFechas.size(); i++) {
-            LocalDateTime fechaHora = LocalDateTime.parse(funcionesFechas.get(i), formatter);
+            LocalDateTime fechaHora = LocalDateTime.parse(funcionesFechas.get(i));
             funciones.add(new FuncionModel(fechaHora, funcionesSalas.get(i)));
         }
 
