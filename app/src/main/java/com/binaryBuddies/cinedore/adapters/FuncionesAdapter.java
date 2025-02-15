@@ -44,7 +44,9 @@ public class FuncionesAdapter extends RecyclerView.Adapter<FuncionesAdapter.Func
 
         FuncionModel funcion = funciones.get(position);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEEE dd 'de' MMMM");
+        DateTimeFormatter formatterHora = DateTimeFormatter.ofPattern("HH:mm");
         holder.tvFuncionFecha.setText(capitalizeFirstLetter(funcion.getFechaHora().format(formatter).toString()));
+        holder.tvFuncionHora.setText(capitalizeFirstLetter(funcion.getFechaHora().format(formatterHora).toString()));
 
         // Evento de clic para abrir la actividad con toda la información de la película y función
         holder.itemView.setOnClickListener(v -> {
@@ -76,10 +78,12 @@ public class FuncionesAdapter extends RecyclerView.Adapter<FuncionesAdapter.Func
 
     public static class FuncionViewHolder extends RecyclerView.ViewHolder {
         TextView tvFuncionFecha;
+        TextView tvFuncionHora;
 
         public FuncionViewHolder(@NonNull View itemView) {
             super(itemView);
             tvFuncionFecha = itemView.findViewById(R.id.funcion_fecha);
+            tvFuncionHora = itemView.findViewById(R.id.funcion_hora);
         }
     }
 

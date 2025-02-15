@@ -5,6 +5,8 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@android:color/transparent"
+    android:clickable="true"
+    android:focusable="true"
     >
 
 
@@ -15,17 +17,28 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:cardBackgroundColor="@android:color/transparent"
+
         >
 
-        <TextView
-            android:id="@+id/funcion_fecha"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="16dp"
-            android:textSize="18sp"
-            android:background="@android:color/transparent"
-            android:clickable="true"
-            android:focusable="true"/>
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/funcion_fecha"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/body"
+               android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/funcion_hora"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/label" />
+        </LinearLayout>
 
 
     </androidx.cardview.widget.CardView>
