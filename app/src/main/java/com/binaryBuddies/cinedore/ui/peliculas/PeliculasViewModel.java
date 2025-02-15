@@ -42,8 +42,8 @@ public class PeliculasViewModel extends ViewModel {
                 "Color",
                 List.of(new FormatoModel("35 mm", "Proyección en formato 35 mm")),
                 List.of(
-                        new FuncionModel(LocalDateTime.of(2025, 2, 9, 17, 30), "SALA 1"),
-                        new FuncionModel(LocalDateTime.of(2025, 2, 20, 17, 30), "SALA 1")
+                        new FuncionModel(LocalDateTime.of(2025, 2, 9, 17, 30), "1"),
+                        new FuncionModel(LocalDateTime.of(2025, 2, 20, 17, 30), "1")
                 )
         ));
 //

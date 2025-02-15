@@ -1,5 +1,6 @@
 package com.binaryBuddies.cinedore;
 
+import android.icu.text.SimpleDateFormat;
 import android.os.Bundle;
 
 import androidx.activity.EdgeToEdge;
@@ -14,6 +15,8 @@ import com.binaryBuddies.cinedore.adapters.PeliculaSeleccionadaAdapter;
 import com.binaryBuddies.cinedore.databinding.ActivitySeleccionBoletosBinding;
 import com.bumptech.glide.Glide;
 import com.google.android.material.tabs.TabLayout;
+
+import java.util.Locale;
 
 public class SeleccionBoletos extends AppCompatActivity {
     private ActivitySeleccionBoletosBinding binding;
@@ -38,10 +41,31 @@ public class SeleccionBoletos extends AppCompatActivity {
         // Obtener los datos del intent
         String titulo = getIntent().getStringExtra("nombre");
         String imagenPoster = getIntent().getStringExtra("imagenPoster");
+        String funcion = getIntent().getStringExtra("fecha_funcion");
+        String sala = getIntent().getStringExtra("sala_funcion");
+        String duracion = getIntent().getStringExtra("duracion");
+        String lenguaje = getIntent().getStringExtra("lenguaje");
+        String clasificacion = getIntent().getStringExtra("clasificacion");
+
+        String fecha = funcion;
+        String hora = "";
+        if (funcion != null && funcion.contains("T")) { // Formato ISO-8601
+            String[] fechaHora = funcion.split("T");
+            fecha = formatearFecha(fechaHora[0]); // yyyy-MM-dd → dd/MM/yyyy
+            hora = fechaHora[1].substring(0, 5); // HH:mm:ss → HH:mm
+        }
 
         // Asignar datos a los elementos de la vista
         binding.movieTitle.setText(titulo);
+        binding.movieDate.setText(fecha);
+        binding.movieTime.setText(hora);
+        binding.movieRoomNum.setText(sala);
+        binding.movieDuration.setText(duracion);
+        binding.movieLanguage.setText(lenguaje);
+        binding.movieClassification.setText(clasificacion);
         Glide.with(this).load(imagenPoster).into(binding.moviePoster);
+
+        binding.tvTotal.setText(String.format(Locale.getDefault(), "0,00 €"));
 
         // Manejo de botones de selección
         configurarBotones();
@@ -51,7 +75,20 @@ public class SeleccionBoletos extends AppCompatActivity {
 
         // Botón de cancelar
         binding.btnCancelar.setOnClickListener(view -> finish());
+        binding.iconoFlechaRegresar.setOnClickListener(view -> finish());
     }
+
+    private String formatearFecha(String fechaISO) {
+        try {
+            SimpleDateFormat formatoEntrada = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+            SimpleDateFormat formatoSalida = new SimpleDateFormat("EEEE dd 'de' MMMM", new Locale("es", "ES")); // Formato en español
+
+            return capitalizeFirstLetter(formatoSalida.format(formatoEntrada.parse(fechaISO)));
+        } catch (Exception e) {
+            return fechaISO; // En caso de error, se devuelve sin cambios.
+        }
+    }
+
 
     private void configurarBotones() {
         // Entradas generales
@@ -86,8 +123,14 @@ public class SeleccionBoletos extends AppCompatActivity {
     }
 
     private void actualizarTotal() {
-        int total = (cantidadGeneral * PRECIO_GENERAL) + (cantidadReducida * PRECIO_REDUCIDA);
-        binding.tvTotal.setText(String.format("%.2f €", (float) total));
+        int totalBoletos = cantidadGeneral + cantidadReducida + cantidadGratis;
+        int totalPrecio = (cantidadGeneral * PRECIO_GENERAL) + (cantidadReducida * PRECIO_REDUCIDA);
+
+        // Actualizar total de boletos
+        binding.totalCantidad.setText(String.format("x%d", totalBoletos));
+
+        // Actualizar total en euros con formato adecuado
+        binding.tvTotal.setText(String.format(Locale.getDefault(), "%.2f €", (float) totalPrecio));
     }
 
     private void realizarCompra() {
@@ -104,5 +147,12 @@ public class SeleccionBoletos extends AppCompatActivity {
         windowInsetsController.setSystemBarsBehavior(
                 WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
         );
+    }
+
+    public static String capitalizeFirstLetter(String text) {
+        if (text == null || text.isEmpty()) {
+            return text;
+        }
+        return text.substring(0, 1).toUpperCase() + text.substring(1);
     }
 }

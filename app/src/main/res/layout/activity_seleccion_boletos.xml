@@ -115,7 +115,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/reloj"
-                        app:tint="@color/white" />
+                        app:tint="@color/white"
+                        android:layout_marginRight="4dp"/>
 
                     <TextView
                         android:id="@+id/movie_duration"
@@ -143,6 +144,7 @@
                         android:backgroundTint="@color/white"
                         android:text="@string/lenguaje_pelicula_seleccionada"
                         android:textAlignment="center"
+                        android:gravity="center"
                         android:textSize="12dp" />
                 </LinearLayout>
 
@@ -528,7 +530,7 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/iva"
+                        android:id="@+id/total_cantidad"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="4dp"
@@ -554,13 +556,7 @@
                             android:textAlignment="center"
                             android:textSize="@dimen/h3" />
 
-                        <TextView
-                            android:id="@+id/euros_4"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/euros"
-                            android:textAlignment="center"
-                            android:textSize="@dimen/h3" />
+
                     </LinearLayout>
 
                 </LinearLayout>

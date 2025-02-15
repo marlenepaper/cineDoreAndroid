@@ -115,14 +115,14 @@
     <string name="menos">-</string>
     <string name="mas">+</string>
     <string name="numero_entradas">0</string>
-    <string name="total_pago">0.00</string>
+    <string name="total_pago">0,00 </string>
 
     <string name="precio_entrada_general">3</string>
     <string name="precio_entrada_reducida">2</string>
     <string name="precio_entrada_gratuita">0</string>
 
     <string name="total">Total</string>
-    <string name="iva">(IVA incluido)</string>
+    <string name="iva">x0</string>
     <string name="comprar">Comprar</string>
     <string name="cancelar">Cancelar</string>
 
