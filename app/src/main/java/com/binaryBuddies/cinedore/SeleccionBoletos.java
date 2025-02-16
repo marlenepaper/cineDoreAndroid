@@ -1,5 +1,6 @@
 package com.binaryBuddies.cinedore;
 
+import android.content.Intent;
 import android.icu.text.SimpleDateFormat;
 import android.os.Bundle;
 
@@ -9,10 +10,13 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.core.view.WindowInsetsControllerCompat;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 import androidx.viewpager.widget.ViewPager;
 
 import com.binaryBuddies.cinedore.adapters.PeliculaSeleccionadaAdapter;
 import com.binaryBuddies.cinedore.databinding.ActivitySeleccionBoletosBinding;
+import com.binaryBuddies.cinedore.ui.ticket.TicketFragment;
 import com.bumptech.glide.Glide;
 import com.google.android.material.tabs.TabLayout;
 
@@ -134,10 +138,25 @@ public class SeleccionBoletos extends AppCompatActivity {
     }
 
     private void realizarCompra() {
-        // Aquí podrías abrir otra actividad para el pago o confirmación de la compra
-        // Intent intent = new Intent(this, PagoActivity.class);
-        // startActivity(intent);
+
+        Intent intent = new Intent(this, NavegationBar.class);
+        intent.putExtra("navigateTo", "ticketFragment"); // Pasar un extra para navegar
+        intent.putExtra("nombre", getIntent().getStringExtra("nombre"));
+        intent.putExtra("imagenPoster", getIntent().getStringExtra("imagenPoster"));
+        intent.putExtra("fecha_funcion", getIntent().getStringExtra("fecha_funcion"));
+        intent.putExtra("sala_funcion", getIntent().getStringExtra("sala_funcion"));
+        intent.putExtra("duracion", getIntent().getStringExtra("duracion"));
+        intent.putExtra("lenguaje", getIntent().getStringExtra("lenguaje"));
+        intent.putExtra("clasificacion", getIntent().getStringExtra("clasificacion"));
+
+        int totalBoletos = cantidadGeneral + cantidadReducida + cantidadGratis;
+        intent.putExtra("total_boletos", totalBoletos);
+        startActivity(intent);
+
+
     }
+
+
 
     private void hideSystemBars() {
         WindowInsetsControllerCompat windowInsetsController =

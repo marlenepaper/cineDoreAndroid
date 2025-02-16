@@ -27,6 +27,13 @@ public class NavegationBar extends AppCompatActivity {
         setupNavigation();
         binding.navView.setItemActiveIndicatorColor(null);
 
+
+        String navigateTo = getIntent().getStringExtra("navigateTo");
+        if ("ticketFragment".equals(navigateTo)) {
+            NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_navegation_bar);
+            navController.navigate(R.id.icon_qr);
+        }
+
     }
 
     private void setupNavigation() {
