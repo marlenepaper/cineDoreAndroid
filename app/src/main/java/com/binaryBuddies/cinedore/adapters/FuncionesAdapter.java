@@ -11,7 +11,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.binaryBuddies.cinedore.CompraBoletos;
 import com.binaryBuddies.cinedore.R;
 import com.binaryBuddies.cinedore.SeleccionBoletos;
 import com.binaryBuddies.cinedore.models.PeliculaModel;
