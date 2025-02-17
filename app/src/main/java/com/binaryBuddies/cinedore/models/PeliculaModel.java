@@ -9,10 +9,10 @@ public class PeliculaModel {
     private String duracion;
     private String sinopsis;
     private String imagenPoster;
-    private String categoria;
-    private String clasificacion;
-    private String lenguaje;
-    private String color;
+    private List<CategoriaModel> categorias;
+    private List<ClasificacionModel> clasificaciones;
+    private List<LenguajeModel> lenguajes;
+    private List<ColorModel> colores;
     private List<FormatoModel> formatos;
     private List<FuncionModel> funciones;
 
@@ -22,10 +22,10 @@ public class PeliculaModel {
             String duracion,
             String sinopsis,
             String imagenPoster,
-            String categoria,
-            String clasificacion,
-            String lenguaje,
-            String color,
+            List<CategoriaModel> categorias,
+            List<ClasificacionModel> clasificaciones,
+            List<LenguajeModel> lenguajes,
+            List<ColorModel> colores,
             List<FormatoModel> formatos,
             List<FuncionModel> funciones
     ) {
@@ -34,10 +34,10 @@ public class PeliculaModel {
         this.duracion = duracion;
         this.sinopsis = sinopsis;
         this.imagenPoster = imagenPoster;
-        this.categoria = categoria;
-        this.clasificacion = clasificacion;
-        this.lenguaje = lenguaje;
-        this.color = color;
+        this.categorias = categorias;
+        this.clasificaciones = clasificaciones;
+        this.lenguajes = lenguajes;
+        this.colores = colores;
         this.formatos = formatos;
         this.funciones = funciones;
     }
@@ -57,17 +57,19 @@ public class PeliculaModel {
     public String getImagenPoster() {
         return imagenPoster;
     }
-    public String getCategoria() {
-        return categoria;
+
+
+    public List<CategoriaModel> getCategoria() {
+        return categorias;
     }
-    public String getClasificacion() {
-        return clasificacion;
+    public List<ClasificacionModel> getClasificacion() {
+        return clasificaciones;
     }
-    public String getLenguaje() {
-        return lenguaje;
+    public List<LenguajeModel> getLenguaje() {
+        return lenguajes;
     }
-    public String getColor() {
-        return color;
+    public List<ColorModel> getColor() {
+        return colores;
     }
 
     public List<FormatoModel> getFormato() {

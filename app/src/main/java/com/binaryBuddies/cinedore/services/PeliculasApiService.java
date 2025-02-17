@@ -8,9 +8,9 @@ import retrofit2.http.Path;
 
 public interface PeliculasApiService {
 
-    @GET("peliculas") // Endpoint que devuelve todas las películas
+    @GET("peliculas")
     Call<List<PeliculaModel>> getPeliculas();
 
-    @GET("peliculas/{id}") // Endpoint para obtener una película específica
+    @GET("peliculas/{id}")
     Call<PeliculaModel> getPeliculaById(@Path("id") long id);
 }

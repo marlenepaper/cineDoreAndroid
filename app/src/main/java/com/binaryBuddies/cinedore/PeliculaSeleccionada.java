@@ -13,6 +13,8 @@ import com.binaryBuddies.cinedore.ui.peliculaSeleccionada.SinopsisFragment;
 import com.bumptech.glide.Glide;
 import com.google.android.material.tabs.TabLayout;
 
+import java.util.ArrayList;
+
 public class PeliculaSeleccionada extends AppCompatActivity {
 
     private ActivityPeliculaSeleccionadaBinding binding;
@@ -31,17 +33,27 @@ public class PeliculaSeleccionada extends AppCompatActivity {
         String anio = getIntent().getStringExtra("anio");
         String duracion = getIntent().getStringExtra("duracion");
         String imagenPoster = getIntent().getStringExtra("imagenPoster");
-        String categoria = getIntent().getStringExtra("categoria");
-        String clasificacion = getIntent().getStringExtra("clasificacion");
-        String lenguaje = getIntent().getStringExtra("lenguaje");
 
-        // Asignar datos a los elementos de la vista
+        // ⚠️ CORRECCIÓN: Obtener listas en lugar de Strings
+        ArrayList<String> categorias = getIntent().getStringArrayListExtra("categoria");
+        ArrayList<String> clasificaciones = getIntent().getStringArrayListExtra("clasificacion");
+        ArrayList<String> lenguajes = getIntent().getStringArrayListExtra("lenguaje");
+        ArrayList<String> colores = getIntent().getStringArrayListExtra("color");  // ✅ Aquí corregido
+
+        // Convertir listas en texto separado por comas
+        String categoriasTexto = (categorias != null && !categorias.isEmpty()) ? String.join(", ", categorias) : "No disponible";
+        String clasificacionesTexto = (clasificaciones != null && !clasificaciones.isEmpty()) ? String.join(", ", clasificaciones) : "No disponible";
+        String lenguajesTexto = (lenguajes != null && !lenguajes.isEmpty()) ? String.join(", ", lenguajes) : "No disponible";
+        String coloresTexto = (colores != null && !colores.isEmpty()) ? String.join(", ", colores) : "No disponible";  // ✅ Aquí corregido
+
+        // Asignar datos a la UI
         binding.nombre.setText(titulo);
         binding.anio.setText(anio);
         binding.duracion.setText(duracion);
-        binding.categoria.setText(categoria);
-        binding.clasificacion.setText(clasificacion);
-        binding.lenguaje.setText(lenguaje);
+        binding.categoria.setText(categoriasTexto);
+        binding.clasificacion.setText(clasificacionesTexto);
+        binding.lenguaje.setText(lenguajesTexto);
+
 
         // Cargar imagen con Glide
         Glide.with(this).load(imagenPoster).into(binding.imagenPoster);
@@ -58,11 +70,8 @@ public class PeliculaSeleccionada extends AppCompatActivity {
         tabLayout.getTabAt(0).setText("Horarios");
         tabLayout.getTabAt(1).setText("Sinopsis");
 
-
         binding.iconoFlechaRegresar.setOnClickListener(view -> finish());
-
     }
-
 
     private void hideSystemBars() {
         WindowInsetsControllerCompat windowInsetsController =
@@ -74,4 +83,3 @@ public class PeliculaSeleccionada extends AppCompatActivity {
         );
     }
 }
-

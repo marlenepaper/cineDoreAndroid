@@ -19,7 +19,6 @@ public class SinopsisFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
         View view = inflater.inflate(R.layout.fragment_sipnosis, container, false);
 
         String sinopsis = getActivity().getIntent().getStringExtra("sinopsis");
@@ -34,7 +33,6 @@ public class SinopsisFragment extends Fragment {
 
         if (formatosNombres != null && !formatosNombres.isEmpty() &&
                 formatosDetalles != null && !formatosDetalles.isEmpty()) {
-
             tvFormato.setText(String.join("\n", formatosNombres));
             tvFormatoDescripcion.setText(String.join("\n", formatosDetalles));
         } else {
@@ -42,9 +40,12 @@ public class SinopsisFragment extends Fragment {
             tvFormatoDescripcion.setText("No disponible");
         }
 
-        String color = getActivity().getIntent().getStringExtra("color");
+        // 🔧 CORRECCIÓN: Obtener "color" como lista
+        ArrayList<String> colores = getActivity().getIntent().getStringArrayListExtra("color");
+        String coloresTexto = (colores != null && !colores.isEmpty()) ? String.join(", ", colores) : "No disponible";
+
         TextView tvColor = view.findViewById(R.id.formato_color);
-        tvColor.setText(color);
+        tvColor.setText(coloresTexto);
 
         return view;
     }

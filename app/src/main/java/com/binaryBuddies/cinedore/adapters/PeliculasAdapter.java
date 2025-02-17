@@ -6,29 +6,26 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.binaryBuddies.cinedore.PeliculaSeleccionada;
 import com.binaryBuddies.cinedore.R;
+import com.binaryBuddies.cinedore.models.CategoriaModel;
+import com.binaryBuddies.cinedore.models.ClasificacionModel;
+import com.binaryBuddies.cinedore.models.ColorModel;
 import com.binaryBuddies.cinedore.models.FormatoModel;
 import com.binaryBuddies.cinedore.models.FuncionModel;
+import com.binaryBuddies.cinedore.models.LenguajeModel;
 import com.binaryBuddies.cinedore.models.PeliculaModel;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.model.GlideUrl;
 import com.bumptech.glide.load.model.LazyHeaders;
 import com.bumptech.glide.request.RequestOptions;
-
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
+
 
 public class PeliculasAdapter extends RecyclerView.Adapter<PeliculasAdapter.MyViewHolder> {
-
     private final Context context;
     private final List<PeliculaModel> peliculaModelList;
 
@@ -63,7 +60,6 @@ public class PeliculasAdapter extends RecyclerView.Adapter<PeliculasAdapter.MyVi
                     .apply(requestOptions)
                     .into(holder.imagenPoster);
 
-
             // Manejar clic en la imagen para abrir la pantalla de detalles
             holder.imagenPoster.setOnClickListener(v -> {
                 Intent intent = new Intent(context, PeliculaSeleccionada.class);
@@ -72,10 +68,12 @@ public class PeliculasAdapter extends RecyclerView.Adapter<PeliculasAdapter.MyVi
                 intent.putExtra("duracion", pelicula.getDuracion());
                 intent.putExtra("sinopsis", pelicula.getSinopsis());
                 intent.putExtra("imagenPoster", pelicula.getImagenPoster());
-                intent.putExtra("categoria", pelicula.getCategoria());
-                intent.putExtra("clasificacion", pelicula.getClasificacion());
-                intent.putExtra("lenguaje", pelicula.getLenguaje());
-                intent.putExtra("color", pelicula.getColor());
+
+                // Convertir listas de modelos a listas de Strings antes de pasarlas al Intent
+                intent.putStringArrayListExtra("categoria", convertirCategoriasAString(pelicula.getCategoria()));
+                intent.putStringArrayListExtra("clasificacion", convertirClasificacionesAString(pelicula.getClasificacion()));
+                intent.putStringArrayListExtra("lenguaje", convertirLenguajesAString(pelicula.getLenguaje()));
+                intent.putStringArrayListExtra("color", convertirColoresAString(pelicula.getColor()));
 
                 intent.putStringArrayListExtra("formatos_nombres", obtenerFormatosNombres(pelicula.getFormato()));
                 intent.putStringArrayListExtra("formatos_detalles", obtenerFormatosDetalles(pelicula.getFormato()));
@@ -100,6 +98,47 @@ public class PeliculasAdapter extends RecyclerView.Adapter<PeliculasAdapter.MyVi
         notifyDataSetChanged();
     }
 
+    // Métodos para convertir listas de modelos a listas de Strings
+
+    private ArrayList<String> convertirCategoriasAString(List<CategoriaModel> categorias) {
+        ArrayList<String> lista = new ArrayList<>();
+        if (categorias != null) {
+            for (CategoriaModel categoria : categorias) {
+                lista.add(categoria.getCategoria());
+            }
+        }
+        return lista;
+    }
+
+    private ArrayList<String> convertirClasificacionesAString(List<ClasificacionModel> clasificaciones) {
+        ArrayList<String> lista = new ArrayList<>();
+        if (clasificaciones != null) {
+            for (ClasificacionModel clasificacion : clasificaciones) {
+                lista.add(clasificacion.getNombre());
+            }
+        }
+        return lista;
+    }
+
+    private ArrayList<String> convertirLenguajesAString(List<LenguajeModel> lenguajes) {
+        ArrayList<String> lista = new ArrayList<>();
+        if (lenguajes != null) {
+            for (LenguajeModel lenguaje : lenguajes) {
+                lista.add(lenguaje.getNombre());
+            }
+        }
+        return lista;
+    }
+
+    private ArrayList<String> convertirColoresAString(List<ColorModel> colores) {
+        ArrayList<String> lista = new ArrayList<>();
+        if (colores != null) {
+            for (ColorModel color : colores) {
+                lista.add(color.getColor());
+            }
+        }
+        return lista;
+    }
 
     private ArrayList<String> obtenerFormatosNombres(List<FormatoModel> formatos) {
         ArrayList<String> nombres = new ArrayList<>();
@@ -135,17 +174,18 @@ public class PeliculasAdapter extends RecyclerView.Adapter<PeliculasAdapter.MyVi
         ArrayList<String> salas = new ArrayList<>();
         if (funciones != null) {
             for (FuncionModel funcion : funciones) {
-                salas.add(funcion.getSala());
+                if (funcion.getSala() != null) { // Solo verifica si sala no es null
+                    salas.add(funcion.getSala().getNombre()); // Obtiene directamente el nombre
+                } else {
+                    salas.add("Sala Desconocida");
+                }
             }
         }
         return salas;
     }
 
-
-
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         ImageView imagenPoster;
-
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
