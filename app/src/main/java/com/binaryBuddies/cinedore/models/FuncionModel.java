@@ -5,20 +5,19 @@ import java.util.List;
 
 public class FuncionModel {
 
-    private LocalDateTime fechaHora;
-    private SalaModel sala;
+    private String fechaHora;
+    private String sala;
 
-
-    public FuncionModel(LocalDateTime fechaHora, SalaModel sala) {
+    public FuncionModel(String fechaHora, String sala) {
         this.fechaHora = fechaHora;
         this.sala = sala;
     }
 
-    public LocalDateTime getFechaHora() {
+    public String getFechaHora() {
         return fechaHora;
     }
 
-    public SalaModel getSala() {
+    public String getSala() {
         return sala;
     }
 }

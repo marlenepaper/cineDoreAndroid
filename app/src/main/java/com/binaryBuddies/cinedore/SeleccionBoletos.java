@@ -31,7 +31,6 @@ public class SeleccionBoletos extends AppCompatActivity {
 
     private static final int PRECIO_GENERAL = 3;
     private static final int PRECIO_REDUCIDA = 2;
-    private static final int PRECIO_GRATIS = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +46,7 @@ public class SeleccionBoletos extends AppCompatActivity {
         String imagenPoster = getIntent().getStringExtra("imagenPoster");
         String funcion = getIntent().getStringExtra("fecha_funcion");
         String sala = getIntent().getStringExtra("sala_funcion");
-        String duracion = getIntent().getStringExtra("duracion");
+        int duracion = getIntent().getIntExtra("duracion", 0);
         String lenguaje = getIntent().getStringExtra("lenguaje");
         String clasificacion = getIntent().getStringExtra("clasificacion");
 
@@ -64,7 +63,7 @@ public class SeleccionBoletos extends AppCompatActivity {
         binding.movieDate.setText(fecha);
         binding.movieTime.setText(hora);
         binding.movieRoomNum.setText(sala);
-        binding.movieDuration.setText(duracion);
+        binding.movieDuration.setText(String.format(Locale.getDefault(), "%d min", duracion));
         binding.movieLanguage.setText(lenguaje);
         binding.movieClassification.setText(clasificacion);
         Glide.with(this).load(imagenPoster).into(binding.moviePoster);
@@ -85,25 +84,21 @@ public class SeleccionBoletos extends AppCompatActivity {
     private String formatearFecha(String fechaISO) {
         try {
             SimpleDateFormat formatoEntrada = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
-            SimpleDateFormat formatoSalida = new SimpleDateFormat("EEEE dd 'de' MMMM", new Locale("es", "ES")); // Formato en español
+            SimpleDateFormat formatoSalida = new SimpleDateFormat("EEEE dd 'de' MMMM", new Locale("es", "ES"));
 
             return capitalizeFirstLetter(formatoSalida.format(formatoEntrada.parse(fechaISO)));
         } catch (Exception e) {
-            return fechaISO; // En caso de error, se devuelve sin cambios.
+            return fechaISO;
         }
     }
 
-
     private void configurarBotones() {
-        // Entradas generales
         binding.btnMenosGeneral.setOnClickListener(view -> actualizarCantidad("general", -1));
         binding.btnMasGeneral.setOnClickListener(view -> actualizarCantidad("general", 1));
 
-        // Entradas reducidas
         binding.btnMenosReducida.setOnClickListener(view -> actualizarCantidad("reducida", -1));
         binding.btnMasReducida.setOnClickListener(view -> actualizarCantidad("reducida", 1));
 
-        // Entradas gratuitas
         binding.btnMenosGratis.setOnClickListener(view -> actualizarCantidad("gratis", -1));
         binding.btnMasGratis.setOnClickListener(view -> actualizarCantidad("gratis", 1));
     }
@@ -130,33 +125,25 @@ public class SeleccionBoletos extends AppCompatActivity {
         int totalBoletos = cantidadGeneral + cantidadReducida + cantidadGratis;
         int totalPrecio = (cantidadGeneral * PRECIO_GENERAL) + (cantidadReducida * PRECIO_REDUCIDA);
 
-        // Actualizar total de boletos
         binding.totalCantidad.setText(String.format("x%d", totalBoletos));
-
-        // Actualizar total en euros con formato adecuado
         binding.tvTotal.setText(String.format(Locale.getDefault(), "%.2f €", (float) totalPrecio));
     }
 
     private void realizarCompra() {
-
         Intent intent = new Intent(this, NavegationBar.class);
-        intent.putExtra("navigateTo", "ticketFragment"); // Pasar un extra para navegar
+        intent.putExtra("navigateTo", "ticketFragment");
         intent.putExtra("nombre", getIntent().getStringExtra("nombre"));
         intent.putExtra("imagenPoster", getIntent().getStringExtra("imagenPoster"));
         intent.putExtra("fecha_funcion", getIntent().getStringExtra("fecha_funcion"));
         intent.putExtra("sala_funcion", getIntent().getStringExtra("sala_funcion"));
-        intent.putExtra("duracion", getIntent().getStringExtra("duracion"));
+        intent.putExtra("duracion", getIntent().getIntExtra("duracion", 0));
         intent.putExtra("lenguaje", getIntent().getStringExtra("lenguaje"));
         intent.putExtra("clasificacion", getIntent().getStringExtra("clasificacion"));
 
         int totalBoletos = cantidadGeneral + cantidadReducida + cantidadGratis;
         intent.putExtra("total_boletos", totalBoletos);
         startActivity(intent);
-
-
     }
-
-
 
     private void hideSystemBars() {
         WindowInsetsControllerCompat windowInsetsController =

@@ -1,5 +1,6 @@
 package com.binaryBuddies.cinedore;
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,12 +9,9 @@ import androidx.core.view.WindowInsetsControllerCompat;
 import androidx.viewpager.widget.ViewPager;
 import com.binaryBuddies.cinedore.adapters.PeliculaSeleccionadaAdapter;
 import com.binaryBuddies.cinedore.databinding.ActivityPeliculaSeleccionadaBinding;
-import com.binaryBuddies.cinedore.ui.peliculaSeleccionada.HorariosFragment;
-import com.binaryBuddies.cinedore.ui.peliculaSeleccionada.SinopsisFragment;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.google.android.material.tabs.TabLayout;
-
-import java.util.ArrayList;
 
 public class PeliculaSeleccionada extends AppCompatActivity {
 
@@ -30,33 +28,40 @@ public class PeliculaSeleccionada extends AppCompatActivity {
 
         // Obtener los datos del intent
         String titulo = getIntent().getStringExtra("nombre");
-        String anio = getIntent().getStringExtra("anio");
-        String duracion = getIntent().getStringExtra("duracion");
+        int anio = getIntent().getIntExtra("anio", 0);
+        int duracion = getIntent().getIntExtra("duracion", 0);
         String imagenPoster = getIntent().getStringExtra("imagenPoster");
+        String categoria = getIntent().getStringExtra("categoria");
+        Log.d("DEBUG_CATEGORIA", "Categoría recibida: " + categoria);
 
-        // ⚠️ CORRECCIÓN: Obtener listas en lugar de Strings
-        ArrayList<String> categorias = getIntent().getStringArrayListExtra("categoria");
-        ArrayList<String> clasificaciones = getIntent().getStringArrayListExtra("clasificacion");
-        ArrayList<String> lenguajes = getIntent().getStringArrayListExtra("lenguaje");
-        ArrayList<String> colores = getIntent().getStringArrayListExtra("color");  // ✅ Aquí corregido
+        String clasificacion = getIntent().getStringExtra("clasificacion");
+        String lenguaje = getIntent().getStringExtra("lenguaje");
+        String color = getIntent().getStringExtra("color");
+        String formato = getIntent().getStringExtra("formato"); // Se agregó la obtención del formato
 
-        // Convertir listas en texto separado por comas
-        String categoriasTexto = (categorias != null && !categorias.isEmpty()) ? String.join(", ", categorias) : "No disponible";
-        String clasificacionesTexto = (clasificaciones != null && !clasificaciones.isEmpty()) ? String.join(", ", clasificaciones) : "No disponible";
-        String lenguajesTexto = (lenguajes != null && !lenguajes.isEmpty()) ? String.join(", ", lenguajes) : "No disponible";
-        String coloresTexto = (colores != null && !colores.isEmpty()) ? String.join(", ", colores) : "No disponible";  // ✅ Aquí corregido
+        // Manejo de valores nulos
+        categoria = (categoria != null) ? categoria : "No disponible";
+        clasificacion = (clasificacion != null) ? clasificacion : "No disponible";
+        lenguaje = (lenguaje != null) ? lenguaje : "No disponible";
+        color = (color != null) ? color : "No disponible";
+        formato = (formato != null) ? formato : "No disponible"; // Se agregó manejo de null para formato
 
         // Asignar datos a la UI
         binding.nombre.setText(titulo);
-        binding.anio.setText(anio);
-        binding.duracion.setText(duracion);
-        binding.categoria.setText(categoriasTexto);
-        binding.clasificacion.setText(clasificacionesTexto);
-        binding.lenguaje.setText(lenguajesTexto);
+        binding.anio.setText(String.valueOf(anio));
+        binding.duracion.setText(duracion + " min");
+        binding.categoria.setText(categoria);
+        binding.clasificacion.setText(clasificacion);
+        binding.lenguaje.setText(lenguaje);
 
 
         // Cargar imagen con Glide
-        Glide.with(this).load(imagenPoster).into(binding.imagenPoster);
+        Glide.with(this)
+                .load(imagenPoster)
+                .apply(new RequestOptions()
+                        .placeholder(R.drawable.placeholder_image) // Imagen de carga
+                        .error(R.drawable.error_image)) // Imagen si hay error
+                .into(binding.imagenPoster);
 
         PeliculaSeleccionadaAdapter peliculaSeleccionadaAdapter = new PeliculaSeleccionadaAdapter(this, getSupportFragmentManager());
         ViewPager viewPager = binding.viewPager;

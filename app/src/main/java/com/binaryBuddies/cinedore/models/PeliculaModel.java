@@ -3,78 +3,91 @@ package com.binaryBuddies.cinedore.models;
 import java.util.List;
 
 public class PeliculaModel {
-
+    private int id;
     private String nombre;
-    private String anio;
-    private String duracion;
+    private int anio;
+    private int duracion;
     private String sinopsis;
     private String imagenPoster;
-    private List<CategoriaModel> categorias;
-    private List<ClasificacionModel> clasificaciones;
-    private List<LenguajeModel> lenguajes;
-    private List<ColorModel> colores;
-    private List<FormatoModel> formatos;
+    private String categoria;
+    private String clasificacion;
+    private String lenguaje;
+    private String color;
+    private String formato;
     private List<FuncionModel> funciones;
 
     public PeliculaModel(
+            int id,
             String nombre,
-            String anio,
-            String duracion,
+            int anio,
+            int duracion,
             String sinopsis,
             String imagenPoster,
-            List<CategoriaModel> categorias,
-            List<ClasificacionModel> clasificaciones,
-            List<LenguajeModel> lenguajes,
-            List<ColorModel> colores,
-            List<FormatoModel> formatos,
+            String categoria,
+            String clasificacion,
+            String lenguaje,
+            String color,
+            String formato,
             List<FuncionModel> funciones
     ) {
+        this.id = id;
         this.nombre = nombre;
         this.anio = anio;
         this.duracion = duracion;
         this.sinopsis = sinopsis;
         this.imagenPoster = imagenPoster;
-        this.categorias = categorias;
-        this.clasificaciones = clasificaciones;
-        this.lenguajes = lenguajes;
-        this.colores = colores;
-        this.formatos = formatos;
+        this.categoria = categoria;
+        this.clasificacion = clasificacion;
+        this.lenguaje = lenguaje;
+        this.color = color;
+        this.formato = formato;
         this.funciones = funciones;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public String getNombre() {
         return nombre;
     }
-    public String getAnio() {
+
+    public int getAnio() {
         return anio;
     }
-    public String getDuracion() {
+
+    public int getDuracion() {
         return duracion;
     }
+
     public String getSinopsis() {
         return sinopsis;
     }
+
     public String getImagenPoster() {
         return imagenPoster;
     }
 
-
-    public List<CategoriaModel> getCategoria() {
-        return categorias;
-    }
-    public List<ClasificacionModel> getClasificacion() {
-        return clasificaciones;
-    }
-    public List<LenguajeModel> getLenguaje() {
-        return lenguajes;
-    }
-    public List<ColorModel> getColor() {
-        return colores;
+    public String getCategoria() {
+        return categoria;
     }
 
-    public List<FormatoModel> getFormato() {
-        return formatos;
+    public String getClasificacion() {
+        return clasificacion;
     }
+
+    public String getLenguaje() {
+        return lenguaje;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public String getFormato() {
+        return formato;
+    }
+
     public List<FuncionModel> getFunciones() {
         return funciones;
     }
