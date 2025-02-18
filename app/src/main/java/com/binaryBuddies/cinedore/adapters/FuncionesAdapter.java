@@ -64,6 +64,8 @@ public class FuncionesAdapter extends RecyclerView.Adapter<FuncionesAdapter.Func
             intent.putExtra("imagenPoster", pelicula.getImagenPoster());
             intent.putExtra("fecha_funcion", fechaHoraStr);
             intent.putExtra("sala_funcion", nombreSala);
+            intent.putExtra("lenguaje", pelicula.getLenguaje());
+            intent.putExtra("clasificacion", pelicula.getClasificacion());
 
             context.startActivity(intent);
         });
