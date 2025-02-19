@@ -3,6 +3,7 @@ package com.binaryBuddies.cinedore.ui.perfil;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,13 +47,22 @@ public class PerfilFragment extends Fragment {
     }
 
     private void logout() {
-        authApiService.logout().enqueue(new Callback<Void>() {
+        SharedPreferences sharedPreferences = requireActivity().getSharedPreferences("user_prefs", Context.MODE_PRIVATE);
+        String token = sharedPreferences.getString("authToken", ""); // Recuperar token
+
+        if (token.isEmpty()) {
+            Toast.makeText(getContext(), "No hay sesión activa", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        Log.d("PerfilFragment", "Token enviado en logout: " + token); // Verificar token en Logcat
+
+        authApiService.logout("Bearer " + token).enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 if (response.isSuccessful()) {
-                    SharedPreferences sharedPreferences = requireActivity().getSharedPreferences("user_prefs", Context.MODE_PRIVATE);
                     SharedPreferences.Editor editor = sharedPreferences.edit();
-                    editor.remove("token");
+                    editor.clear(); // Eliminar todos los datos de sesión
                     editor.apply();
 
                     Toast.makeText(getContext(), "Sesión cerrada", Toast.LENGTH_SHORT).show();
@@ -63,22 +73,31 @@ public class PerfilFragment extends Fragment {
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
-                Toast.makeText(getContext(), "Error de red", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Error de red: " + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
 
     private void eliminarCuenta() {
-        authApiService.deleteAccount().enqueue(new Callback<Void>() {
+        SharedPreferences sharedPreferences = requireActivity().getSharedPreferences("user_prefs", Context.MODE_PRIVATE);
+        String token = sharedPreferences.getString("authToken", ""); // Recuperar token
+
+        if (token.isEmpty()) {
+            Toast.makeText(getContext(), "No hay sesión activa", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        Log.d("PerfilFragment", "Token enviado en eliminar cuenta: " + token); // Verificar token en Logcat
+
+        authApiService.deleteAccount("Bearer " + token).enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 if (response.isSuccessful()) {
-                    Toast.makeText(getContext(), "Cuenta eliminada", Toast.LENGTH_SHORT).show();
-
-                    SharedPreferences sharedPreferences = requireActivity().getSharedPreferences("user_prefs", Context.MODE_PRIVATE);
                     SharedPreferences.Editor editor = sharedPreferences.edit();
-                    editor.clear();
+                    editor.clear(); // Eliminar todos los datos de usuario
                     editor.apply();
+
+                    Toast.makeText(getContext(), "Cuenta eliminada", Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(getContext(), "Error al eliminar cuenta", Toast.LENGTH_SHORT).show();
                 }
@@ -86,7 +105,7 @@ public class PerfilFragment extends Fragment {
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
-                Toast.makeText(getContext(), "Error de red", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Error de red: " + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }

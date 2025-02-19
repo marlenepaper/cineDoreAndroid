@@ -17,10 +17,10 @@ public interface AuthApiService {
     @POST("auth/login")
     Call<AuthResponse> login(@Body LoginRequest request);
 
-    @DELETE("auth/delete-account")
-    Call<Void> deleteAccount();
-
     @POST("auth/logout")
-    Call<Void> logout();
+    Call<Void> logout(@retrofit2.http.Header("Authorization") String token);
+
+    @DELETE("auth/delete-account")
+    Call<Void> deleteAccount(@retrofit2.http.Header("Authorization") String token);
 }
 
