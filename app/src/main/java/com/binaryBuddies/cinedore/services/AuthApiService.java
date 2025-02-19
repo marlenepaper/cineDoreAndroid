@@ -19,5 +19,8 @@ public interface AuthApiService {
 
     @DELETE("auth/delete-account")
     Call<Void> deleteAccount();
+
+    @POST("auth/logout")
+    Call<Void> logout();
 }
 

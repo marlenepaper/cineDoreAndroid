@@ -1,5 +1,6 @@
 package com.binaryBuddies.cinedore;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -56,7 +57,8 @@ public class IniciarSesion extends AppCompatActivity {
             public void onResponse(Call<AuthResponse> call, Response<AuthResponse> response) {
                 if (response.isSuccessful() && response.body() != null) {
                     String token = response.body().getToken();
-                    saveToken(token);
+                    String nombre = response.body().getNombre();
+                    saveUserData(token, nombre);
                     launchPeliculas();
                 } else {
                     Log.e("LOGIN_ERROR", "Error en login: " + response.code());
@@ -73,10 +75,11 @@ public class IniciarSesion extends AppCompatActivity {
     }
 
 
-    private void saveToken(String token) {
-        SharedPreferences sharedPreferences = getSharedPreferences("cineDorePrefs", MODE_PRIVATE);
+    private void saveUserData(String token, String nombre) {
+        SharedPreferences sharedPreferences = getSharedPreferences("user_prefs", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("authToken", token);
+        editor.putString("nombre", nombre); // Guardar el nombre del usuario
         editor.apply();
     }
 
