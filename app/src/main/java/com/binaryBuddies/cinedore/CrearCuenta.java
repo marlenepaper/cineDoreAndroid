@@ -66,6 +66,7 @@ public class CrearCuenta extends AppCompatActivity {
                     String token = response.body().getToken();
                     saveToken(token);
                     launchRegistro();
+                    Toast.makeText(CrearCuenta.this, "Cuenta exitosamente creada", Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(CrearCuenta.this, "Error en el registro", Toast.LENGTH_SHORT).show();
                 }
