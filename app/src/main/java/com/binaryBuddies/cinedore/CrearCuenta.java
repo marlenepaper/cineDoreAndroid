@@ -62,6 +62,8 @@ public class CrearCuenta extends AppCompatActivity {
                     binding.inputFechaNacimiento.getEditText().setText(fechaSeleccionada);
                 }, año, mes, dia);
 
+        datePickerDialog.getDatePicker().setMaxDate(calendario.getTimeInMillis());
+
         datePickerDialog.show();
     }
 
