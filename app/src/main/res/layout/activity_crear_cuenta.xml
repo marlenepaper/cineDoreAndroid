@@ -76,32 +76,6 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
-                android:id="@+id/label2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-
-                android:layout_marginTop="32dp"
-                android:text="@string/confirmar_correo"
-                android:textColor="@color/white"
-                android:textSize="@dimen/body"/>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/input_confirmacion_correo"
-                style="@style/Widget.Material3.TextInputLayout.OutlinedBox.Dense"
-                android:layout_width="match_parent"
-                android:layout_height="54dp"
-                android:layout_marginTop="4dp"
-                >
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:padding="1dp"
-                    android:background="@drawable/borde_btn"/>
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <TextView
                 android:id="@+id/label3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

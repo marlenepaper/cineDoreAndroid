@@ -1,10 +1,10 @@
 package com.binaryBuddies.cinedore;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.ImageButton;
-import android.widget.TextView;
+import android.util.Log;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,6 +12,14 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.core.view.WindowInsetsControllerCompat;
 
 import com.binaryBuddies.cinedore.databinding.ActivityIniciarSesionBinding;
+import com.binaryBuddies.cinedore.models.AuthResponse;
+import com.binaryBuddies.cinedore.models.LoginRequest;
+import com.binaryBuddies.cinedore.network.RetrofitClient;
+import com.binaryBuddies.cinedore.services.AuthApiService;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class IniciarSesion extends AppCompatActivity {
 
@@ -23,13 +31,53 @@ public class IniciarSesion extends AppCompatActivity {
         EdgeToEdge.enable(this);
         hideSystemBars();
 
-
         binding = ActivityIniciarSesionBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         binding.iconoFlechaRegresar.setOnClickListener(view -> launchRegistro());
-        binding.iniciarSesion.setOnClickListener(view -> launchIniciaSesion());
+        binding.iniciarSesion.setOnClickListener(view -> loginUser());
         binding.yaTienesCuenta.setOnClickListener(view -> launchCreaTuCuenta());
+    }
+
+    public void loginUser() {
+        String email = binding.inputEmail.getEditText().getText().toString().trim();
+        String password = binding.inputPassword.getEditText().getText().toString().trim();
+
+        if (email.isEmpty() || password.isEmpty()) {
+            Toast.makeText(this, "Por favor, completa todos los campos", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        AuthApiService authService = RetrofitClient.getRetrofitInstance().create(AuthApiService.class);
+        Call<AuthResponse> call = authService.login(new LoginRequest(email, password));
+
+        call.enqueue(new Callback<AuthResponse>() {
+            @Override
+            public void onResponse(Call<AuthResponse> call, Response<AuthResponse> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    String token = response.body().getToken();
+                    saveToken(token);
+                    launchPeliculas();
+                } else {
+                    Log.e("LOGIN_ERROR", "Error en login: " + response.code());
+                    Toast.makeText(IniciarSesion.this, "Credenciales incorrectas", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<AuthResponse> call, Throwable t) {
+                Log.e("LOGIN_FAILURE", "Fallo la conexión: " + t.getMessage());
+                Toast.makeText(IniciarSesion.this, "Error de conexión", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+
+    private void saveToken(String token) {
+        SharedPreferences sharedPreferences = getSharedPreferences("cineDorePrefs", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("authToken", token);
+        editor.apply();
     }
 
     public void launchRegistro() {
@@ -37,12 +85,11 @@ public class IniciarSesion extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void launchIniciaSesion() {
+    public void launchPeliculas() {
         Intent intent = new Intent(IniciarSesion.this, NavegationBar.class);
         startActivity(intent);
         finishAffinity(); // Cierra todas las actividades previas
     }
-
 
     public void launchCreaTuCuenta() {
         Intent intent = new Intent(IniciarSesion.this, CrearCuenta.class);
