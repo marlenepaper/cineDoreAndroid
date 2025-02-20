@@ -33,7 +33,7 @@ public class PerfilFragment extends Fragment {
 
         // Obtener el nombre del usuario desde SharedPreferences
         SharedPreferences sharedPreferences = requireActivity().getSharedPreferences("user_prefs", Context.MODE_PRIVATE);
-        String nombreUsuario = sharedPreferences.getString("nombre", "Usuario"); // "Usuario" es el valor por defecto
+        String nombreUsuario = sharedPreferences.getString("nombre", "inicia sesión!"); // "Usuario" es el valor por defecto
 
         // Actualizar el TextView con el nombre del usuario
         binding.nombreUsuario.setText(nombreUsuario);
