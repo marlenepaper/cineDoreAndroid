@@ -15,6 +15,8 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.binaryBuddies.cinedore.Bienvenida;
+import com.binaryBuddies.cinedore.CrearCuenta;
+import com.binaryBuddies.cinedore.IniciarSesion;
 import com.binaryBuddies.cinedore.databinding.FragmentPerfilBinding;
 import com.binaryBuddies.cinedore.network.RetrofitClient;
 import com.binaryBuddies.cinedore.services.AuthApiService;
@@ -26,6 +28,7 @@ import retrofit2.Response;
 public class PerfilFragment extends Fragment {
     private FragmentPerfilBinding binding;
     private AuthApiService authApiService;
+    private boolean isLoggedIn;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentPerfilBinding.inflate(inflater, container, false);
@@ -34,6 +37,11 @@ public class PerfilFragment extends Fragment {
         // Obtener el nombre del usuario desde SharedPreferences
         SharedPreferences sharedPreferences = requireActivity().getSharedPreferences("user_prefs", Context.MODE_PRIVATE);
         String nombreUsuario = sharedPreferences.getString("nombre", "inicia sesión!"); // "Usuario" es el valor por defecto
+        String token = sharedPreferences.getString("authToken", "");
+
+        isLoggedIn = (token != null && !token.isEmpty());
+
+        configurarInterfaz();
 
         // Actualizar el TextView con el nombre del usuario
         binding.nombreUsuario.setText(nombreUsuario);
@@ -41,11 +49,38 @@ public class PerfilFragment extends Fragment {
         // Inicializar Retrofit
         authApiService = RetrofitClient.getRetrofitInstance().create(AuthApiService.class);
 
-        // Configurar listeners para los botones
-        binding.btnCerrarSesion.setOnClickListener(view -> logout());
-        binding.continuaComoInvitado.setOnClickListener(view -> eliminarCuenta());
-
         return root;
+    }
+
+    private void configurarInterfaz() {
+        if (isLoggedIn) {
+            // Usuario autenticado, mostrar botones de "Cerrar sesión" y "Eliminar cuenta"
+            binding.btnCerrarSesion.setVisibility(View.VISIBLE);
+            binding.eliminarCuenta.setVisibility(View.VISIBLE);
+
+            binding.btnIniciarSesion.setVisibility(View.GONE);
+            binding.btnCrearCuenta.setVisibility(View.GONE);
+
+            binding.btnCerrarSesion.setOnClickListener(view -> logout());
+            binding.eliminarCuenta.setOnClickListener(view -> eliminarCuenta());
+        } else {
+            // Usuario NO autenticado, mostrar botones de "Iniciar sesión" y "Crear cuenta"
+            binding.btnCerrarSesion.setVisibility(View.GONE);
+            binding.eliminarCuenta.setVisibility(View.GONE);
+
+            binding.btnIniciarSesion.setVisibility(View.VISIBLE);
+            binding.btnCrearCuenta.setVisibility(View.VISIBLE);
+
+            binding.btnIniciarSesion.setOnClickListener(view -> {
+                Intent intent = new Intent(getActivity(), IniciarSesion.class);
+                startActivity(intent);
+            });
+
+            binding.btnCrearCuenta.setOnClickListener(view -> {
+                Intent intent = new Intent(getActivity(), CrearCuenta.class);
+                startActivity(intent);
+            });
+        }
     }
 
     private void logout() {

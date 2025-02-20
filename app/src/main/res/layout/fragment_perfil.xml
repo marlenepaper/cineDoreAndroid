@@ -53,23 +53,57 @@
     </LinearLayout>
 
     <TextView
+        android:id="@+id/btnIniciarSesion"
+        android:layout_width="325dp"
+        android:layout_height="46dp"
+        android:text="@string/inicia_sesion"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/btnCrearCuenta"
+        android:layout_marginBottom="80dp"
+        android:textSize="@dimen/body"
+        android:gravity="center"
+        android:background="@drawable/gradient_button"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:visibility="gone"
+        />
+
+
+    <TextView
+        android:id="@+id/btnCrearCuenta"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:linksClickable="true"
+        android:text="@string/crea_tu_cuenta_"
+        android:textSize="@dimen/label"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginBottom="130dp"
+        android:visibility="gone"
+        />
+
+    <TextView
         android:id="@+id/btn_cerrarSesion"
         android:layout_width="325dp"
         android:layout_height="46dp"
         android:text="@string/cerrar_sesion"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/continua_como_invitado"
+        app:layout_constraintBottom_toTopOf="@id/eliminar_cuenta"
         android:layout_marginBottom="80dp"
         android:textSize="@dimen/body"
         android:gravity="center"
         android:background="@drawable/gradient_button"
         android:textStyle="bold"
-        android:textColor="@color/white"/>
+        android:textColor="@color/white"
+        android:visibility="gone"/>
 
 
     <TextView
-        android:id="@+id/continua_como_invitado"
+        android:id="@+id/eliminar_cuenta"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:linksClickable="true"
@@ -80,6 +114,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginBottom="130dp"
+        android:visibility="gone"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

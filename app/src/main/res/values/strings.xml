@@ -79,6 +79,7 @@
     <string name="Bienvenido">Bienvenido,</string>
     <string name="cerrar_sesion">Cerrar sesión</string>
     <string name="eliminar_cuenta"><u>Eliminar cuenta</u></string>
+    <string name="crea_tu_cuenta_"><u>Crea tu cuenta</u></string>
 
     <!-- Pantalla de cine-->
     <string name="cine_desc">El cine Doré es la sede de proyecciones de Filmoteca Española.</string>
