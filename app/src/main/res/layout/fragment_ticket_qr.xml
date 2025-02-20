@@ -11,6 +11,12 @@
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
         android:src="@drawable/background_lighter" />
+    <ImageView
+        android:layout_width="350dp"
+        android:layout_height="match_parent"
+        android:src="@drawable/sin_entradas_boletos"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <FrameLayout
         android:layout_width="402dp"
@@ -18,7 +24,9 @@
         android:layout_marginTop="105dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        android:visibility="gone"
+        >
 
         <ImageView
             android:id="@+id/moviePoster"
@@ -41,7 +49,9 @@
         android:layout_marginBottom="96dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        android:visibility="gone"
+        >
 
         <ImageView
             android:layout_width="wrap_content"
