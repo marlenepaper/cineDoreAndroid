@@ -12,13 +12,16 @@
         android:scaleType="centerCrop"
         android:src="@drawable/background_lighter" />
     <ImageView
+        android:id="@+id/background_sin_compras"
         android:layout_width="350dp"
         android:layout_height="match_parent"
         android:src="@drawable/sin_entradas_boletos"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        android:visibility="gone"/>
 
     <FrameLayout
+        android:id="@+id/imagen_Pelicula"
         android:layout_width="402dp"
         android:layout_height="418dp"
         android:layout_marginTop="105dp"

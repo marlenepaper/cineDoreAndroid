@@ -3,6 +3,7 @@ package com.binaryBuddies.cinedore;
 import android.content.Intent;
 import android.icu.text.SimpleDateFormat;
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,11 +17,20 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.binaryBuddies.cinedore.adapters.PeliculaSeleccionadaAdapter;
 import com.binaryBuddies.cinedore.databinding.ActivitySeleccionBoletosBinding;
+import com.binaryBuddies.cinedore.models.CompraModel;
+import com.binaryBuddies.cinedore.models.TicketEntradaModel;
+import com.binaryBuddies.cinedore.network.RetrofitClient;
+import com.binaryBuddies.cinedore.services.CompraApiService;
 import com.binaryBuddies.cinedore.ui.ticket.TicketFragment;
 import com.bumptech.glide.Glide;
 import com.google.android.material.tabs.TabLayout;
 
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
+
+import retrofit2.Call;
 
 public class SeleccionBoletos extends AppCompatActivity {
     private ActivitySeleccionBoletosBinding binding;
@@ -130,18 +140,46 @@ public class SeleccionBoletos extends AppCompatActivity {
     }
 
     private void realizarCompra() {
+        // Crear instancia de Retrofit
+        CompraApiService apiService = RetrofitClient.getRetrofitInstance().create(CompraApiService.class);
+
+        // Obtener datos de la función
+        Long usuarioId = 1L; // Se debería obtener de sesión o SharedPreferences
+        Long funcionId = getIntent().getLongExtra("funcion_id", 0);
+
+        // Crear lista de tickets
+        List<TicketEntradaModel> tickets = new ArrayList<>();
+        int totalBoletos = cantidadGeneral + cantidadReducida + cantidadGratis;
+        for (int i = 0; i < totalBoletos; i++) {
+            tickets.add(new TicketEntradaModel("QR-" + System.currentTimeMillis(), 1L)); // Estado 1L = Activo
+        }
+
+        // Crear objeto CompraModel
+        CompraModel compra = new CompraModel(usuarioId, funcionId, new BigDecimal(totalBoletos * PRECIO_GENERAL), tickets);
+
+        // Enviar compra al backend
+        Call<CompraModel> call = apiService.crearCompra(compra);
+        call.enqueue(new retrofit2.Callback<CompraModel>() {
+            @Override
+            public void onResponse(Call<CompraModel> call, retrofit2.Response<CompraModel> response) {
+                if (response.isSuccessful()) {
+                    Log.d("Compra", "Compra realizada con éxito");
+                    irATicketFragment();
+                } else {
+                    Log.e("Compra", "Error en la respuesta del servidor: " + response.message());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<CompraModel> call, Throwable t) {
+                Log.e("Compra", "Error al conectar con el servidor: " + t.getMessage());
+            }
+        });
+    }
+
+    private void irATicketFragment() {
         Intent intent = new Intent(this, NavegationBar.class);
         intent.putExtra("navigateTo", "ticketFragment");
-        intent.putExtra("nombre", getIntent().getStringExtra("nombre"));
-        intent.putExtra("imagenPoster", getIntent().getStringExtra("imagenPoster"));
-        intent.putExtra("fecha_funcion", getIntent().getStringExtra("fecha_funcion"));
-        intent.putExtra("sala_funcion", getIntent().getStringExtra("sala_funcion"));
-        intent.putExtra("duracion", getIntent().getIntExtra("duracion", 0));
-        intent.putExtra("lenguaje", getIntent().getStringExtra("lenguaje"));
-        intent.putExtra("clasificacion", getIntent().getStringExtra("clasificacion"));
-
-        int totalBoletos = cantidadGeneral + cantidadReducida + cantidadGratis;
-        intent.putExtra("total_boletos", totalBoletos);
         startActivity(intent);
     }
 

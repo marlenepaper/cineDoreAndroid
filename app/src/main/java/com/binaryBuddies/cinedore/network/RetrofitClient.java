@@ -12,6 +12,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class RetrofitClient {
 
     private static final String BASE_URL = "http://192.168.1.193:8080/api/";
+    private static final String School_URL = "http://192.168.73.240:8080/api/";
+    private static final String ANDROID_URL = "http://10.0.2.2:8080/api/";
+    private static final String MOBIL = "http://192.168.203.43:8080/api/";
 
     private static Retrofit retrofit;
 
@@ -22,10 +25,14 @@ public class RetrofitClient {
                     .create();
 
             retrofit = new Retrofit.Builder()
-                    .baseUrl(BASE_URL)
+////                    .baseUrl(BASE_URL)
+                    .baseUrl(MOBIL)
+//                    .baseUrl(ANDROID_URL)
                     .addConverterFactory(GsonConverterFactory.create(gson))
                     .build();
         }
         return retrofit;
     }
 }
+
+
