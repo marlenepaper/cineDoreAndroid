@@ -62,11 +62,11 @@ public class PeliculasAdapter extends RecyclerView.Adapter<PeliculasAdapter.MyVi
                 intent.putExtra("duracion", pelicula.getDuracion());
                 intent.putExtra("sinopsis", pelicula.getSinopsis());
                 intent.putExtra("imagenPoster", pelicula.getImagenPoster());
-                intent.putExtra("categoria", pelicula.getCategoria()); // Ahora es String
-                intent.putExtra("clasificacion", pelicula.getClasificacion()); // Ahora es String
-                intent.putExtra("lenguaje", pelicula.getLenguaje()); // Ahora es String
-                intent.putExtra("color", pelicula.getColor()); // Ahora es String
-                intent.putExtra("formato", pelicula.getFormato()); // Ahora es String
+                intent.putExtra("categoria", pelicula.getCategoria());
+                intent.putExtra("clasificacion", pelicula.getClasificacion());
+                intent.putExtra("lenguaje", pelicula.getLenguaje());
+                intent.putExtra("color", pelicula.getColor());
+                intent.putExtra("formato", pelicula.getFormato());
 
                 intent.putStringArrayListExtra("funciones_fechas", obtenerFuncionesFechas(pelicula.getFunciones()));
                 intent.putStringArrayListExtra("funciones_salas", obtenerFuncionesSalas(pelicula.getFunciones()));
@@ -81,7 +81,6 @@ public class PeliculasAdapter extends RecyclerView.Adapter<PeliculasAdapter.MyVi
         return peliculaModelList.size();
     }
 
-    // Método para actualizar la lista sin recrear el Adapter
     public void setPeliculas(List<PeliculaModel> nuevasPeliculas) {
         peliculaModelList.clear();
         peliculaModelList.addAll(nuevasPeliculas);
@@ -92,7 +91,7 @@ public class PeliculasAdapter extends RecyclerView.Adapter<PeliculasAdapter.MyVi
         ArrayList<String> fechas = new ArrayList<>();
         if (funciones != null) {
             for (FuncionModel funcion : funciones) {
-                fechas.add(funcion.getFechaHora()); // Ya es String, no hace falta toString()
+                fechas.add(funcion.getFechaHora());
             }
         }
         return fechas;
@@ -102,8 +101,8 @@ public class PeliculasAdapter extends RecyclerView.Adapter<PeliculasAdapter.MyVi
         ArrayList<String> salas = new ArrayList<>();
         if (funciones != null) {
             for (FuncionModel funcion : funciones) {
-                if (funcion.getSala() != null) { // Solo verifica si sala no es null
-                    salas.add(funcion.getSala()); // Ahora es String
+                if (funcion.getSala() != null) {
+                    salas.add(funcion.getSala());
                 } else {
                     salas.add("Sala Desconocida");
                 }

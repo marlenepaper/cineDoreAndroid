@@ -13,7 +13,6 @@ import com.binaryBuddies.cinedore.R;
 import com.binaryBuddies.cinedore.SeleccionBoletos;
 import com.binaryBuddies.cinedore.models.PeliculaModel;
 import com.binaryBuddies.cinedore.models.FuncionModel;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Locale;
 
@@ -38,7 +37,7 @@ public class FuncionesAdapter extends RecyclerView.Adapter<FuncionesAdapter.Func
     @Override
     public void onBindViewHolder(@NonNull FuncionViewHolder holder, int position) {
         FuncionModel funcion = funciones.get(position);
-        String fechaHoraStr = funcion.getFechaHora().toString(); // Verificar que es un String válido
+        String fechaHoraStr = funcion.getFechaHora().toString();
 
         String fecha = fechaHoraStr;
         String hora = "";
@@ -87,9 +86,6 @@ public class FuncionesAdapter extends RecyclerView.Adapter<FuncionesAdapter.Func
         }
     }
 
-    /**
-     * Convierte una fecha en formato yyyy-MM-dd a EEEE dd 'de' MMMM (ejemplo: "lunes 12 de febrero")
-     */
     private String formatearFecha(String fechaISO) {
         try {
             SimpleDateFormat formatoEntrada = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
@@ -100,7 +96,6 @@ public class FuncionesAdapter extends RecyclerView.Adapter<FuncionesAdapter.Func
             return fechaISO;
         }
     }
-
 
     public static String capitalizeFirstLetter(String text) {
         if (text == null || text.isEmpty()) {
