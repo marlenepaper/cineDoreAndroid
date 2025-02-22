@@ -58,7 +58,8 @@ public class IniciarSesion extends AppCompatActivity {
                 if (response.isSuccessful() && response.body() != null) {
                     String token = response.body().getToken();
                     String nombre = response.body().getNombre();
-                    saveUserData(token, nombre);
+                    Long usuarioId= response.body().getUsuarioId();
+                    saveUserData(token, nombre,usuarioId);
                     launchPeliculas();
                 } else {
                     Log.e("LOGIN_ERROR", "Error en login: " + response.code());
@@ -75,11 +76,12 @@ public class IniciarSesion extends AppCompatActivity {
     }
 
 
-    private void saveUserData(String token, String nombre) {
+    private void saveUserData(String token, String nombre, Long id) {
         SharedPreferences sharedPreferences = getSharedPreferences("user_prefs", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("authToken", token);
-        editor.putString("nombre", nombre); // Guardar el nombre del usuario
+        editor.putString("nombre", nombre);
+        editor.putLong("id", id);
         editor.apply();
     }
 

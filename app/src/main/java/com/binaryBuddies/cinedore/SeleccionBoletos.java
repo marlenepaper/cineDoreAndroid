@@ -1,6 +1,8 @@
 package com.binaryBuddies.cinedore;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.icu.text.SimpleDateFormat;
 import android.os.Bundle;
 import android.util.Log;
@@ -133,6 +135,12 @@ public class SeleccionBoletos extends AppCompatActivity {
             return;
         }
 
+        // Obtener el usuarioId desde SharedPreferences
+        // Nota: En una Activity puedes usar getSharedPreferences directamente.
+        SharedPreferences sharedPreferences = getSharedPreferences("user_prefs", Context.MODE_PRIVATE);
+        // Suponiendo que has guardado el id del usuario como long con la clave "usuarioId"
+        long usuarioId = sharedPreferences.getLong("id", 1L); // Valor por defecto: 1L
+
         // Se genera un único ticket para la compra
         String codigoQr = "TICKET-" + java.util.UUID.randomUUID().toString();
         TicketEntradaDTO ticket = new TicketEntradaDTO(codigoQr, 1L); // Estado activo (1L)
@@ -140,10 +148,8 @@ public class SeleccionBoletos extends AppCompatActivity {
         // Calcular el total a pagar (solo se cobran los boletos generales y reducidos)
         BigDecimal totalPago = BigDecimal.valueOf((cantidadGeneral * PRECIO_GENERAL) + (cantidadReducida * PRECIO_REDUCIDA));
 
-        // Obtener usuarioId y funcionId (asegúrate de enviarlos en el intent o de obtenerlos desde otra fuente)
-        Long usuarioId = getIntent().getLongExtra("usuarioId", 1L);
-        Long funcionId = getIntent().getLongExtra("funcionId", 0L);
-
+        // Obtener el id de la función desde el Intent (ya se envió al iniciar esta Activity)
+        long funcionId = getIntent().getLongExtra("funcionId", 0L);
 
         // Crear CompraDTO con un único ticket
         List<TicketEntradaDTO> tickets = new ArrayList<>();
