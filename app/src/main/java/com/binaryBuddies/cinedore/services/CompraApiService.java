@@ -8,7 +8,7 @@ import retrofit2.http.POST;
 
 
 public interface CompraApiService {
-    @POST("compras/crear")
+    @POST("compraTicket/crear")
     Call<CompraDTO> crearCompra(@Body CompraDTO compra);
 }
 

@@ -13,7 +13,7 @@ import com.binaryBuddies.cinedore.R;
 import com.binaryBuddies.cinedore.adapters.FuncionesAdapter;
 import com.binaryBuddies.cinedore.models.*;
 
-import java.time.LocalDateTime;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -50,7 +50,7 @@ public class HorariosFragment extends Fragment {
             for (int i = 0; i < size; i++) {
                 String fechaHora = funcionesFechas.get(i);
                 String sala = funcionesSalas.get(i);
-                funciones.add(new FuncionModel(fechaHora, sala));
+                funciones.add(new FuncionModel(0L, fechaHora, sala));
             }
         }
 

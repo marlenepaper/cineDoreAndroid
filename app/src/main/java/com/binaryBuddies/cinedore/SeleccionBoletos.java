@@ -43,7 +43,7 @@ public class SeleccionBoletos extends AppCompatActivity {
         binding = ActivitySeleccionBoletosBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        // Obtener los datos del intent
+        // Obtener datos del Intent
         String titulo = getIntent().getStringExtra("nombre");
         String imagenPoster = getIntent().getStringExtra("imagenPoster");
         String funcion = getIntent().getStringExtra("fecha_funcion");
@@ -54,13 +54,12 @@ public class SeleccionBoletos extends AppCompatActivity {
 
         String fecha = funcion;
         String hora = "";
-        if (funcion != null && funcion.contains("T")) { // Formato ISO-8601
+        if (funcion != null && funcion.contains("T")) {
             String[] fechaHora = funcion.split("T");
-            fecha = formatearFecha(fechaHora[0]); // yyyy-MM-dd → dd/MM/yyyy
-            hora = fechaHora[1].substring(0, 5); // HH:mm:ss → HH:mm
+            fecha = formatearFecha(fechaHora[0]);
+            hora = fechaHora[1].substring(0, 5);
         }
 
-        // Asignar datos a los elementos de la vista
         binding.movieTitle.setText(titulo);
         binding.movieDate.setText(fecha);
         binding.movieTime.setText(hora);
@@ -72,13 +71,9 @@ public class SeleccionBoletos extends AppCompatActivity {
 
         binding.tvTotal.setText(String.format(Locale.getDefault(), "0,00 €"));
 
-        // Manejo de botones de selección
         configurarBotones();
 
-        // Botón de compra
         binding.btnComprar.setOnClickListener(view -> realizarCompra());
-
-        // Botón de cancelar
         binding.btnCancelar.setOnClickListener(view -> finish());
         binding.iconoFlechaRegresar.setOnClickListener(view -> finish());
     }
@@ -87,7 +82,6 @@ public class SeleccionBoletos extends AppCompatActivity {
         try {
             SimpleDateFormat formatoEntrada = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
             SimpleDateFormat formatoSalida = new SimpleDateFormat("EEEE dd 'de' MMMM", new Locale("es", "ES"));
-
             return capitalizeFirstLetter(formatoSalida.format(formatoEntrada.parse(fechaISO)));
         } catch (Exception e) {
             return fechaISO;
@@ -126,45 +120,50 @@ public class SeleccionBoletos extends AppCompatActivity {
     private void actualizarTotal() {
         int totalBoletos = cantidadGeneral + cantidadReducida + cantidadGratis;
         int totalPrecio = (cantidadGeneral * PRECIO_GENERAL) + (cantidadReducida * PRECIO_REDUCIDA);
-
         binding.totalCantidad.setText(String.format("x%d", totalBoletos));
         binding.tvTotal.setText(String.format(Locale.getDefault(), "%.2f €", (float) totalPrecio));
     }
 
     private void realizarCompra() {
-        // Crear instancia de Retrofit
-        CompraApiService apiService = RetrofitClient.getRetrofitInstance().create(CompraApiService.class);
-
-        // Obtener datos de la función
-        Long usuarioId = 1L; // Se debería obtener de sesión o SharedPreferences
-        Long funcionId = getIntent().getLongExtra("funcion_id", 0);
-
-        // Crear lista de tickets
-        List<TicketEntradaDTO> tickets = new ArrayList<>();
-        int totalBoletos = cantidadGeneral + cantidadReducida + cantidadGratis;
-        for (int i = 0; i < totalBoletos; i++) {
-            tickets.add(new TicketEntradaDTO("QR-" + System.currentTimeMillis(), 1L)); // Estado 1L = Activo
+        int totalTickets = cantidadGeneral + cantidadReducida + cantidadGratis;
+        if (totalTickets <= 0) {
+            Log.e("Compra", "No se ha seleccionado ningún boleto.");
+            return;
         }
 
-        // Crear objeto CompraModel
-        CompraDTO compra = new CompraDTO(usuarioId, funcionId, new BigDecimal(totalBoletos * PRECIO_GENERAL), tickets);
+        // Se genera un único ticket para la compra
+        String codigoQr = "TICKET-" + java.util.UUID.randomUUID().toString();
+        TicketEntradaDTO ticket = new TicketEntradaDTO(codigoQr, 1L); // Estado activo (1L)
 
-        // Enviar compra al backend
-        Call<CompraDTO> call = apiService.crearCompra(compra);
+        // Calcular el total a pagar (solo se cobran los boletos generales y reducidos)
+        BigDecimal totalPago = BigDecimal.valueOf((cantidadGeneral * PRECIO_GENERAL) + (cantidadReducida * PRECIO_REDUCIDA));
+
+        // Obtener usuarioId y funcionId (asegúrate de enviarlos en el intent o de obtenerlos desde otra fuente)
+        Long usuarioId = getIntent().getLongExtra("usuarioId", 1L);
+        Long funcionId = getIntent().getLongExtra("funcionId", 0L);
+
+        // Crear CompraDTO con un único ticket
+        List<TicketEntradaDTO> tickets = new ArrayList<>();
+        tickets.add(ticket);
+
+        CompraDTO compraDTO = new CompraDTO(usuarioId, funcionId, totalPago, tickets);
+
+        // Llamada a la API mediante Retrofit
+        CompraApiService apiService = RetrofitClient.getRetrofitInstance().create(CompraApiService.class);
+        Call<CompraDTO> call = apiService.crearCompra(compraDTO);
         call.enqueue(new retrofit2.Callback<CompraDTO>() {
             @Override
             public void onResponse(Call<CompraDTO> call, retrofit2.Response<CompraDTO> response) {
                 if (response.isSuccessful()) {
-                    Log.d("Compra", "Compra realizada con éxito");
                     irATicketFragment();
                 } else {
-                    Log.e("Compra", "Error en la respuesta del servidor: " + response.message());
+                    Log.e("Compra", "Error en la compra: " + response.errorBody());
                 }
             }
 
             @Override
             public void onFailure(Call<CompraDTO> call, Throwable t) {
-                Log.e("Compra", "Error al conectar con el servidor: " + t.getMessage());
+                Log.e("Compra", "Fallo al realizar la compra", t);
             }
         });
     }
@@ -178,7 +177,6 @@ public class SeleccionBoletos extends AppCompatActivity {
     private void hideSystemBars() {
         WindowInsetsControllerCompat windowInsetsController =
                 new WindowInsetsControllerCompat(getWindow(), getWindow().getDecorView());
-
         windowInsetsController.hide(WindowInsetsCompat.Type.navigationBars());
         windowInsetsController.setSystemBarsBehavior(
                 WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
