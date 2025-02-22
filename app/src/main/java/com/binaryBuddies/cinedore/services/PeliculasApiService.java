@@ -8,7 +8,7 @@ import retrofit2.http.Path;
 
 public interface PeliculasApiService {
 
-    @GET("peliculas")
+    @GET("peliculasDTO")
     Call<List<PeliculaModel>> getPeliculas();
 
     @GET("peliculas/{id}")
