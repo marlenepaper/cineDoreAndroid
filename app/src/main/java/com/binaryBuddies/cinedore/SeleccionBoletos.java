@@ -1,11 +1,14 @@
 package com.binaryBuddies.cinedore;
 
+import static java.security.AccessController.getContext;
+
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.icu.text.SimpleDateFormat;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -160,6 +163,7 @@ public class SeleccionBoletos extends AppCompatActivity {
             @Override
             public void onResponse(Call<CompraDTO> call, retrofit2.Response<CompraDTO> response) {
                 if (response.isSuccessful()) {
+                    Toast.makeText(SeleccionBoletos.this, "Compra realizada con éxito", Toast.LENGTH_SHORT).show();
                     irATicketFragment();
                 } else {
                     Log.e("Compra", "Error en la compra: " + response.errorBody());
