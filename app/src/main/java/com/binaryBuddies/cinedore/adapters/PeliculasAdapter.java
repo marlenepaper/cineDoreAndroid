@@ -70,6 +70,7 @@ public class PeliculasAdapter extends RecyclerView.Adapter<PeliculasAdapter.MyVi
 
                 intent.putStringArrayListExtra("funciones_fechas", obtenerFuncionesFechas(pelicula.getFunciones()));
                 intent.putStringArrayListExtra("funciones_salas", obtenerFuncionesSalas(pelicula.getFunciones()));
+                intent.putStringArrayListExtra("funciones_ids", obtenerFuncionesId(pelicula.getFunciones()));
 
                 context.startActivity(intent);
             });
@@ -109,6 +110,16 @@ public class PeliculasAdapter extends RecyclerView.Adapter<PeliculasAdapter.MyVi
             }
         }
         return salas;
+    }
+
+    private ArrayList<String> obtenerFuncionesId(List<FuncionModel> funciones) {
+        ArrayList<String> ids = new ArrayList<>();
+        if (funciones != null) {
+            for (FuncionModel funcion : funciones) {
+                ids.add(String.valueOf(funcion.getId()));
+            }
+        }
+        return ids;
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {

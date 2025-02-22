@@ -43,16 +43,27 @@ public class HorariosFragment extends Fragment {
         // Obtener funciones
         ArrayList<String> funcionesFechas = extras.getStringArrayList("funciones_fechas");
         ArrayList<String> funcionesSalas = extras.getStringArrayList("funciones_salas");
+        ArrayList<String> funcionesIds = extras.getStringArrayList("funciones_ids");
 
         List<FuncionModel> funciones = new ArrayList<>();
-        if (funcionesFechas != null && funcionesSalas != null) {
-            int size = Math.min(funcionesFechas.size(), funcionesSalas.size());
+        if (funcionesIds != null && funcionesFechas != null && funcionesSalas != null) {
+            int size = Math.min(Math.min(funcionesIds.size(), funcionesFechas.size()), funcionesSalas.size());
             for (int i = 0; i < size; i++) {
+                String idStr = funcionesIds.get(i);
                 String fechaHora = funcionesFechas.get(i);
                 String sala = funcionesSalas.get(i);
-                funciones.add(new FuncionModel(0L, fechaHora, sala));
+
+                Long idf = 0L;
+                try {
+                    idf = Long.valueOf(idStr);
+                } catch (NumberFormatException e) {
+                    e.printStackTrace();
+                }
+
+                funciones.add(new FuncionModel(idf, fechaHora, sala));
             }
         }
+
 
         // Crear objeto de película
         PeliculaModel pelicula = new PeliculaModel(id, nombre, anio, duracion, sinopsis, imagenPoster,

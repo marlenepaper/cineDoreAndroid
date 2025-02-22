@@ -48,6 +48,8 @@ public class SeleccionBoletos extends AppCompatActivity {
         String imagenPoster = getIntent().getStringExtra("imagenPoster");
         String funcion = getIntent().getStringExtra("fecha_funcion");
         String sala = getIntent().getStringExtra("sala_funcion");
+        String idFuncion = getIntent().getStringExtra("id_funcion");
+
         int duracion = getIntent().getIntExtra("duracion", 0);
         String lenguaje = getIntent().getStringExtra("lenguaje");
         String clasificacion = getIntent().getStringExtra("clasificacion");
@@ -141,6 +143,7 @@ public class SeleccionBoletos extends AppCompatActivity {
         // Obtener usuarioId y funcionId (asegúrate de enviarlos en el intent o de obtenerlos desde otra fuente)
         Long usuarioId = getIntent().getLongExtra("usuarioId", 1L);
         Long funcionId = getIntent().getLongExtra("funcionId", 0L);
+
 
         // Crear CompraDTO con un único ticket
         List<TicketEntradaDTO> tickets = new ArrayList<>();

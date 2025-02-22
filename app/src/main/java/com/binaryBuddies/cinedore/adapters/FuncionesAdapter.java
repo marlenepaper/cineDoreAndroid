@@ -65,7 +65,7 @@ public class FuncionesAdapter extends RecyclerView.Adapter<FuncionesAdapter.Func
             intent.putExtra("sala_funcion", nombreSala);
             intent.putExtra("lenguaje", pelicula.getLenguaje());
             intent.putExtra("clasificacion", pelicula.getClasificacion());
-
+            intent.putExtra("funcionId", funcion.getId());
             context.startActivity(intent);
         });
     }
