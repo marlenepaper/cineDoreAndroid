@@ -25,8 +25,8 @@ public class RetrofitClient {
                     .create();
 
             retrofit = new Retrofit.Builder()
-////                    .baseUrl(BASE_URL)
-                    .baseUrl(MOBIL)
+                    .baseUrl(BASE_URL)
+//                    .baseUrl(MOBIL)
 //                    .baseUrl(ANDROID_URL)
                     .addConverterFactory(GsonConverterFactory.create(gson))
                     .build();

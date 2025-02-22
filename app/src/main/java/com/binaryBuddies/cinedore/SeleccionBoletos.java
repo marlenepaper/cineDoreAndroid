@@ -7,23 +7,15 @@ import android.util.Log;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.core.view.WindowInsetsControllerCompat;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.viewpager.widget.ViewPager;
 
-import com.binaryBuddies.cinedore.adapters.PeliculaSeleccionadaAdapter;
 import com.binaryBuddies.cinedore.databinding.ActivitySeleccionBoletosBinding;
-import com.binaryBuddies.cinedore.models.CompraModel;
-import com.binaryBuddies.cinedore.models.TicketEntradaModel;
+import com.binaryBuddies.cinedore.models.CompraDTO;
+import com.binaryBuddies.cinedore.models.TicketEntradaDTO;
 import com.binaryBuddies.cinedore.network.RetrofitClient;
 import com.binaryBuddies.cinedore.services.CompraApiService;
-import com.binaryBuddies.cinedore.ui.ticket.TicketFragment;
 import com.bumptech.glide.Glide;
-import com.google.android.material.tabs.TabLayout;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -148,20 +140,20 @@ public class SeleccionBoletos extends AppCompatActivity {
         Long funcionId = getIntent().getLongExtra("funcion_id", 0);
 
         // Crear lista de tickets
-        List<TicketEntradaModel> tickets = new ArrayList<>();
+        List<TicketEntradaDTO> tickets = new ArrayList<>();
         int totalBoletos = cantidadGeneral + cantidadReducida + cantidadGratis;
         for (int i = 0; i < totalBoletos; i++) {
-            tickets.add(new TicketEntradaModel("QR-" + System.currentTimeMillis(), 1L)); // Estado 1L = Activo
+            tickets.add(new TicketEntradaDTO("QR-" + System.currentTimeMillis(), 1L)); // Estado 1L = Activo
         }
 
         // Crear objeto CompraModel
-        CompraModel compra = new CompraModel(usuarioId, funcionId, new BigDecimal(totalBoletos * PRECIO_GENERAL), tickets);
+        CompraDTO compra = new CompraDTO(usuarioId, funcionId, new BigDecimal(totalBoletos * PRECIO_GENERAL), tickets);
 
         // Enviar compra al backend
-        Call<CompraModel> call = apiService.crearCompra(compra);
-        call.enqueue(new retrofit2.Callback<CompraModel>() {
+        Call<CompraDTO> call = apiService.crearCompra(compra);
+        call.enqueue(new retrofit2.Callback<CompraDTO>() {
             @Override
-            public void onResponse(Call<CompraModel> call, retrofit2.Response<CompraModel> response) {
+            public void onResponse(Call<CompraDTO> call, retrofit2.Response<CompraDTO> response) {
                 if (response.isSuccessful()) {
                     Log.d("Compra", "Compra realizada con éxito");
                     irATicketFragment();
@@ -171,7 +163,7 @@ public class SeleccionBoletos extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<CompraModel> call, Throwable t) {
+            public void onFailure(Call<CompraDTO> call, Throwable t) {
                 Log.e("Compra", "Error al conectar con el servidor: " + t.getMessage());
             }
         });

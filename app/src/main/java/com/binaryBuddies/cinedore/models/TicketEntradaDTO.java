@@ -1,10 +1,10 @@
 package com.binaryBuddies.cinedore.models;
 
-public class TicketEntradaModel {
+public class TicketEntradaDTO {
     private String codigoQr;
     private Long estadoId;
 
-    public TicketEntradaModel(String codigoQr, Long estadoId) {
+    public TicketEntradaDTO(String codigoQr, Long estadoId) {
         this.codigoQr = codigoQr;
         this.estadoId = estadoId;
     }
