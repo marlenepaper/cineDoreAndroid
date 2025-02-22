@@ -50,7 +50,8 @@ public class SeleccionBoletos extends AppCompatActivity {
         String imagenPoster = getIntent().getStringExtra("imagenPoster");
         String funcion = getIntent().getStringExtra("fecha_funcion");
         String sala = getIntent().getStringExtra("sala_funcion");
-        String idFuncion = getIntent().getStringExtra("id_funcion");
+        // Ahora usamos "funcionId" y lo recuperamos como long
+        long funcionId = getIntent().getLongExtra("funcionId", 0L);
 
         int duracion = getIntent().getIntExtra("duracion", 0);
         String lenguaje = getIntent().getStringExtra("lenguaje");
@@ -77,7 +78,7 @@ public class SeleccionBoletos extends AppCompatActivity {
 
         configurarBotones();
 
-        binding.btnComprar.setOnClickListener(view -> realizarCompra());
+        binding.btnComprar.setOnClickListener(view -> realizarCompra(funcionId));
         binding.btnCancelar.setOnClickListener(view -> finish());
         binding.iconoFlechaRegresar.setOnClickListener(view -> finish());
     }
@@ -128,7 +129,7 @@ public class SeleccionBoletos extends AppCompatActivity {
         binding.tvTotal.setText(String.format(Locale.getDefault(), "%.2f €", (float) totalPrecio));
     }
 
-    private void realizarCompra() {
+    private void realizarCompra(long funcionId) {
         int totalTickets = cantidadGeneral + cantidadReducida + cantidadGratis;
         if (totalTickets <= 0) {
             Log.e("Compra", "No se ha seleccionado ningún boleto.");
@@ -136,10 +137,8 @@ public class SeleccionBoletos extends AppCompatActivity {
         }
 
         // Obtener el usuarioId desde SharedPreferences
-        // Nota: En una Activity puedes usar getSharedPreferences directamente.
         SharedPreferences sharedPreferences = getSharedPreferences("user_prefs", Context.MODE_PRIVATE);
-        // Suponiendo que has guardado el id del usuario como long con la clave "usuarioId"
-        long usuarioId = sharedPreferences.getLong("id", 1L); // Valor por defecto: 1L
+        long usuarioId = sharedPreferences.getLong("usuarioId", 1L); // Usamos la misma clave que en IniciarSesion
 
         // Se genera un único ticket para la compra
         String codigoQr = "TICKET-" + java.util.UUID.randomUUID().toString();
@@ -147,9 +146,6 @@ public class SeleccionBoletos extends AppCompatActivity {
 
         // Calcular el total a pagar (solo se cobran los boletos generales y reducidos)
         BigDecimal totalPago = BigDecimal.valueOf((cantidadGeneral * PRECIO_GENERAL) + (cantidadReducida * PRECIO_REDUCIDA));
-
-        // Obtener el id de la función desde el Intent (ya se envió al iniciar esta Activity)
-        long funcionId = getIntent().getLongExtra("funcionId", 0L);
 
         // Crear CompraDTO con un único ticket
         List<TicketEntradaDTO> tickets = new ArrayList<>();
