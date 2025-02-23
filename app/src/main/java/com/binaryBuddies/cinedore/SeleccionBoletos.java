@@ -160,6 +160,8 @@ public class SeleccionBoletos extends AppCompatActivity {
         CompraApiService apiService = RetrofitClient.getRetrofitInstance().create(CompraApiService.class);
         Call<CompraDTO> call = apiService.crearCompra(compraDTO);
         call.enqueue(new retrofit2.Callback<CompraDTO>() {
+
+
             @Override
             public void onResponse(Call<CompraDTO> call, retrofit2.Response<CompraDTO> response) {
                 if (response.isSuccessful()) {
@@ -179,8 +181,17 @@ public class SeleccionBoletos extends AppCompatActivity {
     }
 
     private void irATicketFragment() {
-        Intent intent = new Intent(this, NavegationBar.class);
-        intent.putExtra("navigateTo", "ticketFragment");
+        Intent intent = new Intent(this, TicketComprado.class);
+//        intent.putExtra("navigateTo", "ticketFragment");
+        intent.putExtra("funcionId", getIntent().getLongExtra("funcionId", 0L));
+        intent.putExtra("titulo", getIntent().getStringExtra("nombre"));
+        intent.putExtra("imagenPoster", getIntent().getStringExtra("imagenPoster"));
+        intent.putExtra("fecha_funcion", getIntent().getStringExtra("fecha_funcion"));
+        intent.putExtra("sala_funcion", getIntent().getStringExtra("sala_funcion"));
+        intent.putExtra("duracion", getIntent().getIntExtra("duracion", 0));
+        intent.putExtra("lenguaje", getIntent().getStringExtra("lenguaje"));
+        intent.putExtra("clasificacion", getIntent().getStringExtra("clasificacion"));
+        intent.putExtra("numero_boletos", cantidadGeneral + cantidadReducida + cantidadGratis);
         startActivity(intent);
     }
 
