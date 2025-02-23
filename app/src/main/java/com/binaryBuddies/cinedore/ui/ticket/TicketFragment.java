@@ -22,6 +22,17 @@ public class TicketFragment extends Fragment {
         binding = FragmentTicketQrBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
+        boolean hayCompras = verificarSiHayCompras();
+
+        if (hayCompras) {
+            binding.backgroundSinCompras.setVisibility(View.GONE);
+            binding.imagenPelicula.setVisibility(View.VISIBLE);
+            binding.ticketLayout.setVisibility(View.VISIBLE);
+        } else {
+            binding.backgroundSinCompras.setVisibility(View.VISIBLE);
+            binding.imagenPelicula.setVisibility(View.GONE);
+            binding.ticketLayout.setVisibility(View.GONE);
+        }
 
         return root;
     }
@@ -30,5 +41,12 @@ public class TicketFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
+    }
+
+
+    private boolean verificarSiHayCompras() {
+        // Aquí deberías verificar los datos de tus tickets
+        // Por ahora, retornamos false como ejemplo
+        return false;
     }
 }
