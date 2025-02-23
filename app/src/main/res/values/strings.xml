@@ -125,6 +125,7 @@
     <string name="iva">x0</string>
     <string name="comprar">Comprar</string>
     <string name="cancelar">Cancelar</string>
+    <string name="finalizar">Finalizar compra</string>
 
 
 </resources>

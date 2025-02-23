@@ -53,9 +53,7 @@ public class SeleccionBoletos extends AppCompatActivity {
         String imagenPoster = getIntent().getStringExtra("imagenPoster");
         String funcion = getIntent().getStringExtra("fecha_funcion");
         String sala = getIntent().getStringExtra("sala_funcion");
-        // Ahora usamos "funcionId" y lo recuperamos como long
         long funcionId = getIntent().getLongExtra("funcionId", 0L);
-
         int duracion = getIntent().getIntExtra("duracion", 0);
         String lenguaje = getIntent().getStringExtra("lenguaje");
         String clasificacion = getIntent().getStringExtra("clasificacion");
