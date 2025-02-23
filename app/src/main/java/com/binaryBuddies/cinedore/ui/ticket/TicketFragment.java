@@ -22,9 +22,9 @@ public class TicketFragment extends Fragment {
         binding = FragmentTicketQrBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        boolean hayCompras = verificarSiHayCompras();
+        boolean hayTicket = verificarSiHayCompras();
 
-        if (hayCompras) {
+        if (hayTicket) {
             binding.backgroundSinCompras.setVisibility(View.GONE);
             binding.imagenPelicula.setVisibility(View.VISIBLE);
             binding.ticketLayout.setVisibility(View.VISIBLE);

@@ -149,8 +149,14 @@ public class SeleccionBoletos extends AppCompatActivity {
         BigDecimal totalPago = BigDecimal.valueOf((cantidadGeneral * PRECIO_GENERAL) + (cantidadReducida * PRECIO_REDUCIDA));
 
         // Crear CompraDTO con un único ticket
+//        List<TicketEntradaDTO> tickets = new ArrayList<>();
+//        tickets.add(ticket);
         List<TicketEntradaDTO> tickets = new ArrayList<>();
-        tickets.add(ticket);
+        int totalBoletos = cantidadGeneral + cantidadReducida + cantidadGratis;
+        for (int i = 0; i < totalBoletos; i++) {
+            tickets.add(new TicketEntradaDTO("QR-" + System.currentTimeMillis(), 1L)); // Estado 1L = Activo
+        }
+
 
         CompraDTO compraDTO = new CompraDTO(null,usuarioId, funcionId, totalPago, tickets);
 
