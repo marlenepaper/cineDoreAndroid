@@ -154,7 +154,7 @@ public class SeleccionBoletos extends AppCompatActivity {
         List<TicketEntradaDTO> tickets = new ArrayList<>();
         tickets.add(ticket);
 
-        CompraDTO compraDTO = new CompraDTO(usuarioId, funcionId, totalPago, tickets);
+        CompraDTO compraDTO = new CompraDTO(null,usuarioId, funcionId, totalPago, tickets);
 
         // Llamada a la API mediante Retrofit
         CompraApiService apiService = RetrofitClient.getRetrofitInstance().create(CompraApiService.class);
