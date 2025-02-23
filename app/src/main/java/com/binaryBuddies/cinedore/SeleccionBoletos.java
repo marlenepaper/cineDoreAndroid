@@ -167,6 +167,7 @@ public class SeleccionBoletos extends AppCompatActivity {
                     irATicketFragment();
                 } else {
                     Log.e("Compra", "Error en la compra: " + response.errorBody());
+                    Toast.makeText(SeleccionBoletos.this, "No se pueden realizar compras sin una cuenta", Toast.LENGTH_SHORT).show();
                 }
             }
 
