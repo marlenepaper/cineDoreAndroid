@@ -13,8 +13,10 @@ public class TicketDisplayDTO implements Serializable {
     private String clasificacion;
     private String lenguaje;
     private int duracion;
+    private int cantidadTickets;
 
-    public TicketDisplayDTO() {}
+    public TicketDisplayDTO() {
+    }
 
     public TicketDisplayDTO(
             Long funcionId,
@@ -25,7 +27,9 @@ public class TicketDisplayDTO implements Serializable {
             String imagenPelicula,
             String clasificacion,
             String lenguaje,
-            int duracion)
+            int duracion,
+            int cantidadTickets)
+
     {
         this.funcionId = funcionId;
         this.totalPago = totalPago;
@@ -36,6 +40,15 @@ public class TicketDisplayDTO implements Serializable {
         this.clasificacion = clasificacion;
         this.lenguaje = lenguaje;
         this.duracion = duracion;
+        this.cantidadTickets = cantidadTickets;
+    }
+
+    public int getCantidadTickets() {
+        return cantidadTickets;
+    }
+
+    public void setCantidadTickets(int cantidadTickets) {
+        this.cantidadTickets = cantidadTickets;
     }
 
     public Long getFuncionId() {

@@ -25,7 +25,7 @@ public class TicketComprado extends AppCompatActivity {
             movieLanguage, movieClassification, numeroDeEntradas, btnFinalizar;
 
     private String titulo, imagenPoster, fecha, sala, lenguaje, clasificacion, codigoQr;
-    private int duracion, numeroBoletos;
+    private int duracion, numeroBoletos,cantidadTickets;
     private Long funcionId;
     private BigDecimal totalPago;
 
@@ -95,7 +95,8 @@ public class TicketComprado extends AppCompatActivity {
                 imagenPoster,
                 clasificacion,
                 lenguaje,
-                duracion
+                duracion,
+                cantidadTickets
         );
 
         // Navegar a NavigationBar y pasar el TicketDisplayDTO

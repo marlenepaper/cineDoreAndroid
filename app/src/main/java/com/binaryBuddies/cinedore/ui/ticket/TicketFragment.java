@@ -2,6 +2,7 @@ package com.binaryBuddies.cinedore.ui.ticket;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.icu.text.SimpleDateFormat;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,6 +21,7 @@ import com.bumptech.glide.Glide;
 
 
 import java.util.List;
+import java.util.Locale;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -29,14 +31,14 @@ public class TicketFragment extends Fragment {
 
     private FragmentTicketQrBinding binding;
     private TicketApiService ticketApiService;
-    private long usuarioId = -1; // ID del usuario (se obtiene de SharedPreferences)
+    private long usuarioId = -1;
     private boolean isLoggedIn;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentTicketQrBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        // Obtener el usuario desde SharedPreferences
+
         SharedPreferences sharedPreferences = requireActivity().getSharedPreferences("user_prefs", Context.MODE_PRIVATE);
         usuarioId = sharedPreferences.getLong("usuarioId", -1);
         String token = sharedPreferences.getString("authToken", "");
@@ -45,7 +47,7 @@ public class TicketFragment extends Fragment {
 
         ticketApiService = RetrofitClient.getRetrofitInstance().create(TicketApiService.class);
 
-        // Si está autenticado, cargar tickets; si no, mostrar pantalla por defecto
+
         if (isLoggedIn) {
             cargarTicket();
         } else {
@@ -79,13 +81,24 @@ public class TicketFragment extends Fragment {
         binding.imagenPelicula.setVisibility(View.VISIBLE);
         binding.ticketLayout.setVisibility(View.VISIBLE);
 
+        String fechaFormateada = ticket.getFechaFuncion();
+        String hora = "";
+
+        if (fechaFormateada != null && fechaFormateada.contains("T")) {
+            String[] fechaHora = fechaFormateada.split("T");
+            fechaFormateada = formatearFecha(fechaHora[0]);
+            hora = fechaHora[1].substring(0, 5); // Extrae la hora HH:mm
+        }
+
         // Asignar valores del ticket a la vista
         binding.movieTitle.setText(ticket.getTituloPelicula());
         binding.movieClassification.setText(ticket.getClasificacion());
         binding.movieLanguage.setText(ticket.getLenguaje());
         binding.movieDuration.setText(ticket.getDuracion() + " min");
-        binding.movieDate.setText(ticket.getFechaFuncion());
-        binding.numeroDeEntradas.setText("1 Entrada");
+        binding.movieDate.setText(fechaFormateada); // Fecha formateada
+        binding.movieTime.setText(hora); // Hora extraída
+        binding.numeroDeEntradas.setText(ticket.getCantidadTickets() + "x Entrada(s)");
+
 
 
         Glide.with(this)
@@ -107,4 +120,25 @@ public class TicketFragment extends Fragment {
         super.onDestroyView();
         binding = null;
     }
+
+    private String formatearFecha(String fechaISO) {
+        try {
+            SimpleDateFormat formatoEntrada = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+            SimpleDateFormat formatoSalida = new SimpleDateFormat("EEEE dd 'de' MMMM", new Locale("es", "ES"));
+            return capitalizeFirstLetter(formatoSalida.format(formatoEntrada.parse(fechaISO)));
+        } catch (Exception e) {
+            return fechaISO;
+        }
+    }
+
+    /**
+     * Capitaliza la primera letra de una cadena.
+     */
+    private String capitalizeFirstLetter(String texto) {
+        if (texto == null || texto.isEmpty()) {
+            return texto;
+        }
+        return texto.substring(0, 1).toUpperCase() + texto.substring(1);
+    }
 }
+
