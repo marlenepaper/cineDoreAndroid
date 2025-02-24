@@ -69,7 +69,7 @@
 
     <!-- Bottom bar -->
     <string name="title_activity_peliculas">Peliculas</string>
-    <string name="cine_icono">Cine</string>
+    <string name="pin_icono">Cine</string>
     <string name="entradas_icono">Entradas</string>
     <string name="perfil_icono">Perfil</string>
 

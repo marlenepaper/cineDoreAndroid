@@ -15,7 +15,7 @@
     <fragment
         android:id="@+id/icon_pin"
         android:name="com.binaryBuddies.cinedore.ui.cine.CineFragment"
-        android:label="@string/cine_icono"
+        android:label="@string/pin_icono"
         tools:layout="@layout/fragment_cine" />
 
     <fragment

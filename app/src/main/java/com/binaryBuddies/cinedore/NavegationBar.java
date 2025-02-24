@@ -38,7 +38,7 @@ public class NavegationBar extends AppCompatActivity {
 
     private void setupNavigation() {
         // Configurar navegación y logo
-        binding.logoCinedore.setOnClickListener(view -> launchPeliculas());
+        binding.logoCinedore.setOnClickListener(view -> launchCine());
 
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.icon_peliculas,
@@ -49,9 +49,9 @@ public class NavegationBar extends AppCompatActivity {
         NavigationUI.setupWithNavController(binding.navView, navController);
     }
 
-    public void launchPeliculas() {
+    public void launchCine() {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_navegation_bar);
-        navController.navigate(R.id.icon_peliculas);
+        navController.navigate(R.id.icon_pin);
         binding.navView.getMenu().findItem(R.id.uncheckedItem).setChecked(true);
     }
 
