@@ -14,7 +14,7 @@
         android:src="@drawable/background_darker" />
 
     <FrameLayout
-        android:layout_width="402dp"
+        android:layout_width="match_parent"
         android:layout_height="418dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

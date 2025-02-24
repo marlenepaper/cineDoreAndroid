@@ -87,11 +87,11 @@ public class TicketFragment extends Fragment {
         binding.movieDate.setText(ticket.getFechaFuncion());
         binding.numeroDeEntradas.setText("1 Entrada");
 
-        // Cargar imagen con Picasso
+
         Glide.with(this)
                 .load(ticket.getImagenPelicula())
-                .placeholder(R.drawable.placeholder_image) // Imagen temporal mientras carga
-                .error(R.drawable.error_image) // Imagen si hay error al cargar
+                .placeholder(R.drawable.placeholder_image)
+                .error(R.drawable.error_image)
                 .into(binding.moviePoster);
 
     }

@@ -95,7 +95,10 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/i_label_2"
         style="@style/Widget.Material3.TextInputLayout.OutlinedBox.Dense"
-        app:passwordToggleEnabled="true"
+        app:passwordToggleEnabled="false"
+        app:endIconMode="password_toggle"
+        app:endIconTint="@color/white_50"
+        app:endIconTintMode="multiply"
         >
 
         <com.google.android.material.textfield.TextInputEditText
@@ -103,7 +106,8 @@
             android:layout_height="match_parent"
             android:padding="1dp"
             android:textColor="@color/white"
-            android:background="@drawable/borde_btn"/>
+            android:background="@drawable/borde_btn"
+            android:inputType="textPassword"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 

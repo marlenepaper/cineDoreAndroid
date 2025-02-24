@@ -71,7 +71,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:padding="1dp"
-                    android:background="@drawable/borde_btn"/>
+                    android:background="@drawable/borde_btn"
+                    android:textColor="@color/white"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -91,14 +92,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="54dp"
                 android:layout_marginTop="4dp"
-
-                app:passwordToggleEnabled="true">
+                app:endIconMode="password_toggle"
+                app:passwordToggleEnabled="false"
+                app:endIconTint="@color/white_50"
+                app:endIconTintMode="multiply">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:padding="1dp"
-                    android:background="@drawable/borde_btn" />
+                    android:background="@drawable/borde_btn"
+                    android:textColor="@color/white"
+                    android:inputType="textPassword"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -142,7 +147,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:padding="1dp"
-                    android:background="@drawable/borde_btn" />
+                    android:background="@drawable/borde_btn"
+                    android:textColor="@color/white"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -167,7 +173,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:padding="1dp"
-                    android:background="@drawable/borde_btn" />
+                    android:background="@drawable/borde_btn"
+                    android:textColor="@color/white"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -175,7 +182,6 @@
                 android:id="@+id/label6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
                 android:layout_marginTop="32dp"
                 android:text="@string/fecha_nacimiento"
                 android:textColor="@color/white"
@@ -193,7 +199,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:padding="1dp"
-                    android:background="@drawable/borde_btn" />
+                    android:background="@drawable/borde_btn"
+                    android:textColor="@color/white"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -219,7 +226,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:padding="1dp"
-                    android:background="@drawable/borde_btn" />
+                    android:background="@drawable/borde_btn"
+                    android:textColor="@color/white"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -245,7 +253,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:padding="1dp"
-                    android:background="@drawable/borde_btn" />
+                    android:background="@drawable/borde_btn"
+                    android:textColor="@color/white"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 

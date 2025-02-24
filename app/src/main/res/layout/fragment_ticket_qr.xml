@@ -22,7 +22,7 @@
 
     <FrameLayout
         android:id="@+id/imagen_Pelicula"
-        android:layout_width="402dp"
+        android:layout_width="match_parent"
         android:layout_height="418dp"
         android:layout_marginTop="105dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -166,6 +166,7 @@
                             android:layout_marginHorizontal="6dp"
                             android:background="@drawable/borde_lenguaje"
                             android:text="@string/lenguaje_pelicula_seleccionada"
+                            android:gravity="center"
                             android:textAlignment="center"
                             android:textColor="@color/black"
                             android:textSize="12dp" />
