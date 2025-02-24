@@ -27,7 +27,26 @@ public class SplashScreen extends AppCompatActivity {
         binding = ActivitySplashScreenBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        verificarPrimeraEjecucion();
         launchInicioRegistro();
+    }
+
+    private void verificarPrimeraEjecucion() {
+        SharedPreferences sharedPreferences = getSharedPreferences("app_prefs", Context.MODE_PRIVATE);
+        boolean primeraVez = sharedPreferences.getBoolean("primera_ejecucion", true);
+
+        if (primeraVez) {
+            // Elimina los datos de usuario si es la primera vez después de instalar la app
+            SharedPreferences userPrefs = getSharedPreferences("user_prefs", Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = userPrefs.edit();
+            editor.clear();
+            editor.apply();
+
+            // Marcar que ya no es la primera vez
+            SharedPreferences.Editor appEditor = sharedPreferences.edit();
+            appEditor.putBoolean("primera_ejecucion", false);
+            appEditor.apply();
+        }
     }
 
     public void launchInicioRegistro() {
