@@ -1,7 +1,5 @@
 package com.binaryBuddies.cinedore;
 
-import static java.security.AccessController.getContext;
-
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -139,7 +137,12 @@ public class SeleccionBoletos extends AppCompatActivity {
 
         // Obtener el usuarioId desde SharedPreferences
         SharedPreferences sharedPreferences = getSharedPreferences("user_prefs", Context.MODE_PRIVATE);
-        long usuarioId = sharedPreferences.getLong("usuarioId", 1L); // Usamos la misma clave que en IniciarSesion
+        long usuarioId = sharedPreferences.getLong("usuarioId", -1); //Valor por defecto
+
+        if (usuarioId == -1) {
+            Toast.makeText(this, "Debe iniciar sesión para comprar boletos", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
         // Se genera un único ticket para la compra
         String codigoQr = "TICKET-" + java.util.UUID.randomUUID().toString();
@@ -170,7 +173,7 @@ public class SeleccionBoletos extends AppCompatActivity {
             public void onResponse(Call<CompraDTO> call, retrofit2.Response<CompraDTO> response) {
                 if (response.isSuccessful()) {
                     Toast.makeText(SeleccionBoletos.this, "Compra realizada con éxito", Toast.LENGTH_SHORT).show();
-                    irATicketFragment();
+                    irATicketComprado();
                 } else {
                     Log.e("Compra", "Error en la compra: " + response.errorBody());
                     Toast.makeText(SeleccionBoletos.this, "No se pueden realizar compras sin una cuenta", Toast.LENGTH_SHORT).show();
@@ -184,7 +187,7 @@ public class SeleccionBoletos extends AppCompatActivity {
         });
     }
 
-    private void irATicketFragment() {
+    private void irATicketComprado() {
         Intent intent = new Intent(this, TicketComprado.class);
 //        intent.putExtra("navigateTo", "ticketFragment");
         intent.putExtra("funcionId", getIntent().getLongExtra("funcionId", 0L));
@@ -198,6 +201,7 @@ public class SeleccionBoletos extends AppCompatActivity {
         intent.putExtra("numero_boletos", cantidadGeneral + cantidadReducida + cantidadGratis);
         startActivity(intent);
     }
+
 
     private void hideSystemBars() {
         WindowInsetsControllerCompat windowInsetsController =
