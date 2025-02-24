@@ -37,16 +37,16 @@ public class PeliculaSeleccionada extends AppCompatActivity {
         String clasificacion = getIntent().getStringExtra("clasificacion");
         String lenguaje = getIntent().getStringExtra("lenguaje");
         String color = getIntent().getStringExtra("color");
-        String formato = getIntent().getStringExtra("formato"); // Se agregó la obtención del formato
+        String formato = getIntent().getStringExtra("formato");
 
-        // Manejo de valores nulos
+
         categoria = (categoria != null) ? categoria : "No disponible";
         clasificacion = (clasificacion != null) ? clasificacion : "No disponible";
         lenguaje = (lenguaje != null) ? lenguaje : "No disponible";
         color = (color != null) ? color : "No disponible";
-        formato = (formato != null) ? formato : "No disponible"; // Se agregó manejo de null para formato
+        formato = (formato != null) ? formato : "No disponible";
 
-        // Asignar datos a la UI
+
         binding.nombre.setText(titulo);
         binding.anio.setText(String.valueOf(anio));
         binding.duracion.setText(duracion + " min");
@@ -54,13 +54,11 @@ public class PeliculaSeleccionada extends AppCompatActivity {
         binding.clasificacion.setText(clasificacion);
         binding.lenguaje.setText(lenguaje);
 
-
-        // Cargar imagen con Glide
         Glide.with(this)
                 .load(imagenPoster)
                 .apply(new RequestOptions()
-                        .placeholder(R.drawable.placeholder_image) // Imagen de carga
-                        .error(R.drawable.error_image)) // Imagen si hay error
+                        .placeholder(R.drawable.placeholder_image)
+                        .error(R.drawable.error_image))
                 .into(binding.imagenPoster);
 
         PeliculaSeleccionadaAdapter peliculaSeleccionadaAdapter = new PeliculaSeleccionadaAdapter(this, getSupportFragmentManager());
