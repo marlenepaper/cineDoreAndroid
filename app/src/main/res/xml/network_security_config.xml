@@ -10,6 +10,9 @@
         <domain includeSubdomains="true">192.168.203.43</domain>
     </domain-config>
     <domain-config cleartextTrafficPermitted="true">
+        <domain includeSubdomains="true">192.168.156.43</domain>
+    </domain-config>
+    <domain-config cleartextTrafficPermitted="true">
         <domain includeSubdomains="true">10.0.2.2</domain>
     </domain-config>
     <domain-config cleartextTrafficPermitted="true">
